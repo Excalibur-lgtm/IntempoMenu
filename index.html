@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>In Tempo — Italian Kitchen</title>
+<meta name="description" content="In Tempo. Итальянская кухня. Листайте меню как настоящую книгу.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@500;600;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --tan: #c7a877;
+    --tan-deep: #ad8c5a;
+    --paper: #f6f1e6;
+    --ink: #241c15;
+    --ink-soft: #4a4038;
+    --red: #a63626;
+    --olive: #7f9438;
+    --line: rgba(36,28,21,.15);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--tan);
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(255,255,255,.18), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(255,255,255,.10), transparent 55%);
+    color: var(--ink);
+    font-family: 'Archivo', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- NAV ---------- */
+  header.site{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 28px 6vw 0;
+  }
+  .brandmark{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: .01em;
+  }
+  .brandmark em{
+    font-style: italic;
+    color: var(--red);
+  }
+  .nav-cta{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background .25s ease, color .25s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover{ background: var(--ink); color: var(--paper); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 9vh 6vw 6vh;
+    max-width: 900px;
+  }
+  .hero .kicker{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(44px, 8vw, 92px);
+    line-height: .98;
+    margin: 0 0 24px;
+    letter-spacing: -.01em;
+  }
+  .hero p{
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 0 34px;
+  }
+  .hero-actions{ display:flex; gap: 14px; flex-wrap: wrap; align-items:center; }
+  .btn-primary{
+    display:inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    padding: 15px 30px;
+    border-radius: 999px;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(36,28,21,.28); }
+  .hint{
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- BOOK SECTION ---------- */
+  .book-section{
+    padding: 2vh 4vw 12vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .book-frame{
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    display:flex;
+    justify-content:center;
+  }
+
+  /* torn paper backing, echoing the menu's own motif */
+  .book-frame::before{
+    content:"";
+    position:absolute;
+    inset: -22px -14px;
+    background: var(--paper);
+    clip-path: polygon(
+      0% 3%, 4% 1%, 9% 3%, 14% 0%, 20% 2%, 27% 0%, 34% 2%, 41% 0%, 48% 2%,
+      55% 0%, 62% 2%, 69% 0%, 76% 2%, 83% 0%, 90% 2%, 96% 0%, 100% 3%,
+      100% 97%, 96% 100%, 90% 98%, 83% 100%, 76% 98%, 69% 100%, 62% 98%,
+      55% 100%, 48% 98%, 41% 100%, 34% 98%, 27% 100%, 20% 98%, 14% 100%,
+      9% 98%, 4% 100%, 0% 97%
+    );
+    box-shadow: 0 30px 60px rgba(36,28,21,.35);
+  }
+
+  #book{
+    position: relative;
+    z-index: 1;
+    touch-action: pan-y;
+  }
+  #book img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  .page{
+    background: white;
+  }
+
+  .book-controls{
+    position: relative;
+    z-index: 2;
+    display:flex;
+    align-items:center;
+    gap: 22px;
+    margin-top: 34px;
+  }
+  .flip-btn{
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: var(--ink);
+    color: var(--paper);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: transform .2s ease, background .2s ease;
+    flex-shrink:0;
+  }
+  .flip-btn:hover{ transform: scale(1.08); background: var(--red); }
+  .flip-btn:disabled{ opacity: .3; cursor:default; transform:none; background: var(--ink); }
+  .flip-btn svg{ width: 20px; height:20px; }
+
+  .page-counter{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    min-width: 90px;
+    text-align:center;
+  }
+
+  .book-tip{
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align:center;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px 6vw 40px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+  }
+  footer h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-style: italic;
+    font-size: 26px;
+    margin: 0 0 14px;
+  }
+  footer p, footer a{
+    color: rgba(246,241,230,.75);
+    font-size: 14.5px;
+    line-height: 1.9;
+    text-decoration: none;
+  }
+  footer a:hover{ color: var(--paper); }
+  .footer-col-title{
+    font-size: 12.5px;
+    color: rgba(246,241,230,.5);
+    margin-bottom: 12px;
+  }
+  .footer-bottom{
+    max-width:1100px;
+    margin: 0 auto;
+    padding-top: 26px;
+    border-top: 1px solid rgba(246,241,230,.15);
+    font-size: 13px;
+    color: rgba(246,241,230,.5);
+  }
+
+  @media (max-width: 760px){
+    .footer-grid{ grid-template-columns: 1fr; gap: 26px; }
+    .hero{ padding-top: 6vh; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brandmark">In <em>Tempo</em></div>
+  <a class="nav-cta" href="#book">Открыть меню</a>
+</header>
+
+<section class="hero">
+  <p class="kicker">italian kitchen</p>
+  <h1>Меню читают,<br>как хорошую книгу.</h1>
+  <p>52 страницы блюд In Tempo — от закусок до дижестива. Переверните страницу пальцем или мышью, будто держите меню в руках.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#book">Листать меню →</a>
+    <span class="hint">Работает и с телефона</span>
+  </div>
+</section>
+
+<section class="book-section" id="book">
+  <div class="book-frame">
+    <div id="book"></div>
+  </div>
+
+  <div class="book-controls">
+    <button class="flip-btn" id="prevBtn" aria-label="Предыдущая страница">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="page-counter"><span id="pageNow">1</span> / <span id="pageTotal">52</span></div>
+    <button class="flip-btn" id="nextBtn" aria-label="Следующая страница">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+  <p class="book-tip">Свайпните страницу или используйте стрелки клавиатуры</p>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Заглянуть в гости</h3>
+      <p>Ереван · улица, дом<br>Открыто ежедневно, 11:00–23:00</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Контакты</div>
+      <p>
+        <a href="tel:+374000000">+374 00 000 000</a><br>
+        <a href="mailto:hello@intempo.am">hello@intempo.am</a>
+      </p>
+    </div>
+    <div>
+      <div class="footer-col-title">Соцсети</div>
+      <p>
+        <a href="#">Instagram</a><br>
+        <a href="#">Telegram</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 In Tempo. Italian kitchen.</div>
+</footer>
+
+<script src="page-flip.browser.js"></script>
+<script>
+  const TOTAL_PAGES = 52;
+  const pad = n => String(n).padStart(2, '0');
+
+  const pageFlip = new St.PageFlip(document.getElementById('book'), {
+    width: 500,
+    height: 750,
+    size: 'stretch',
+    minWidth: 260,
+    maxWidth: 700,
+    minHeight: 390,
+    maxHeight: 1050,
+    maxShadowOpacity: 0.4,
+    showCover: true,
+    mobileScrollSupport: true,
+    usePortrait: true,
+    autoSize: true,
+    flippingTime: 700
+  });
+
+  const imgs = [];
+  for (let i = 1; i <= TOTAL_PAGES; i++){
+    imgs.push(`page-${pad(i)}.jpg`);
+  }
+
+  pageFlip.loadFromImages(imgs);
+
+  const pageNowEl = document.getElementById('pageNow');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  function updateUI(){
+    const idx = pageFlip.getCurrentPageIndex();
+    pageNowEl.textContent = idx + 1;
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx >= TOTAL_PAGES - 1;
+  }
+
+  pageFlip.on('flip', updateUI);
+  pageFlip.on('init', updateUI);
+
+  prevBtn.addEventListener('click', () => pageFlip.flipPrev());
+  nextBtn.addEventListener('click', () => pageFlip.flipNext());
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') pageFlip.flipPrev();
+    if (e.key === 'ArrowRight') pageFlip.flipNext();
+  });
+</script>
+
+</body>
+</html>
