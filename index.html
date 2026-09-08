@@ -20,6 +20,8 @@
     --red: #a63626;
     --olive: #7f9438;
     --line: rgba(36,28,21,.15);
+    --glass: rgba(246,241,230,0.85);
+    --glass-dark: rgba(36,28,21,0.08);
   }
 
   *{ box-sizing: border-box; }
@@ -38,13 +40,100 @@
 
   a{ color: inherit; }
 
+  /* ---------- HERO VIDEO SECTION (НОВАЯ СЕКЦИЯ) ---------- */
+  .hero-video-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .hero-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.95);
+  }
+  
+  /* Полупрозрачный градиент для лучшей читаемости текста */
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+                rgba(246,241,230,0.15), 
+                rgba(36,28,21,0.05),
+                rgba(246,241,230,0.1));
+    z-index: 0;
+  }
+  
+  /* Анимация текста с эффектом "появления из размытия" */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 6vw;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .hero-kicker {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .hero-title {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .hero-subtitle {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .hero-actions {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .hero-content.in-view {
+    .hero-kicker { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+    .hero-title { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+    .hero-subtitle { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+    .hero-actions { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+  }
+  
   /* ---------- NAV ---------- */
   header.site{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding: 28px 6vw 0;
+    z-index: 10;
+    transition: background 0.4s ease;
   }
+  
+  header.site.scrolled {
+    background: rgba(246, 241, 230, 0.95);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+  }
+
   .brandmark{
     font-family:'Fraunces', serif;
     font-weight: 600;
@@ -241,6 +330,34 @@
     color: rgba(246,241,230,.5);
   }
 
+  /* ---------- NEW: SUBTLE ANIMATIONS ---------- */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  
+  .fade-in.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  
+  .stagger-list.in-view .stagger-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .stagger-list.in-view .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+  .stagger-list.in-view .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+  .stagger-list.in-view .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+  .stagger-list.in-view .stagger-item:nth-child(4) { transition-delay: 0.4s; }
+
   @media (max-width: 760px){
     .footer-grid{ grid-template-columns: 1fr; gap: 26px; }
     .hero{ padding-top: 6vh; }
@@ -253,20 +370,29 @@
 </head>
 <body>
 
+<!-- НОВАЯ HERO СЕКЦИЯ С ВИДЕО -->
+<div class="hero-video-container">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="hero.mp4" type="video/mp4">
+    <!-- Фолбэк на случай, если видео не загрузится -->
+    <img src="page-20.jpg" alt="Spaghetti Amatriciana">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-kicker kicker">italian kitchen</p>
+    <h1 class="hero-title">Меню читают,<br>как хорошую книгу.</h1>
+    <p class="hero-subtitle">52 страницы блюд In Tempo — от закусок до дижестива. Переверните страницу пальцем или мышью, будто держите меню в руках.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#book">Листать меню →</a>
+      <span class="hint">Работает и с телефона</span>
+    </div>
+  </div>
+</div>
+
 <header class="site">
   <div class="brandmark">In <em>Tempo</em></div>
   <a class="nav-cta" href="#book">Открыть меню</a>
 </header>
-
-<section class="hero">
-  <p class="kicker">italian kitchen</p>
-  <h1>Меню читают,<br>как хорошую книгу.</h1>
-  <p>52 страницы блюд In Tempo — от закусок до дижестива. Переверните страницу пальцем или мышью, будто держите меню в руках.</p>
-  <div class="hero-actions">
-    <a class="btn-primary" href="#book">Листать меню →</a>
-    <span class="hint">Работает и с телефона</span>
-  </div>
-</section>
 
 <section class="book-section" id="book">
   <div class="book-frame">
@@ -287,26 +413,26 @@
 
 <footer>
   <div class="footer-grid">
-    <div>
+    <div class="fade-in">
       <h3>Заглянуть в гости</h3>
       <p>Ереван · улица, дом<br>Открыто ежедневно, 11:00–23:00</p>
     </div>
-    <div>
+    <div class="fade-in">
       <div class="footer-col-title">Контакты</div>
       <p>
         <a href="tel:+374000000">+374 00 000 000</a><br>
         <a href="mailto:hello@intempo.am">hello@intempo.am</a>
       </p>
     </div>
-    <div>
+    <div class="fade-in">
       <div class="footer-col-title">Соцсети</div>
-      <p>
-        <a href="#">Instagram</a><br>
-        <a href="#">Telegram</a>
+      <p class="stagger-list">
+        <span class="stagger-item"><a href="#">Instagram</a></span><br>
+        <span class="stagger-item"><a href="#">Telegram</a></span>
       </p>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 In Tempo. Italian kitchen.</div>
+  <div class="footer-bottom fade-in">© 2026 In Tempo. Italian kitchen.</div>
 </footer>
 
 <script src="page-flip.browser.js"></script>
@@ -359,6 +485,56 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') pageFlip.flipPrev();
     if (e.key === 'ArrowRight') pageFlip.flipNext();
+  });
+  
+  // ===== АНИМАЦИИ =====
+  document.addEventListener('DOMContentLoaded', () => {
+    // Анимация hero текста
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+      setTimeout(() => {
+        heroContent.classList.add('in-view');
+      }, 300);
+    }
+    
+    // Плавное появление при скролле
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    // Наблюдаем за элементами с классом fade-in
+    document.querySelectorAll('.fade-in, .stagger-list').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Плавное изменение шапки при скролле
+    const header = document.querySelector('header.site');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', () => {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        // Скроллим вниз
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // Скроллим вверх
+        header.style.transform = 'translateY(0)';
+      }
+      
+      if (scrollTop > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      lastScrollTop = scrollTop;
+    });
   });
 </script>
 
