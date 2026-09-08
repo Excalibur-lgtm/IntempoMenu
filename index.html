@@ -9,160 +9,103 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#14100c; --bg2:#1d1712; --paper:#f6f1e6; --tan:#c7a877;
-    --red:#a63626; --muted:rgba(246,241,230,.62); --line:rgba(246,241,230,.12);
-  }
+  :root{--bg:#14100c;--bg2:#1d1712;--paper:#f6f1e6;--tan:#c7a877;--red:#a63626;--muted:rgba(246,241,230,.62);--line:rgba(246,241,230,.12);}
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--paper);font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-  a{color:inherit;text-decoration:none;}
-  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;} img{display:block;max-width:100%;}
   ::selection{background:var(--tan);color:#1a1410;}
-  body::-webkit-scrollbar{width:10px;}
-  body::-webkit-scrollbar-track{background:var(--bg);}
-  body::-webkit-scrollbar-thumb{background:#3a2f24;border-radius:99px;}
   .wrap{max-width:1160px;margin:0 auto;padding:0 6vw;}
   .kicker{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--tan);}
-  h1,h2{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;line-height:1.04;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:600;line-height:1.04;letter-spacing:-.01em;}
   h2{font-size:clamp(32px,5vw,56px);margin:10px 0 16px;}
   .sub{color:var(--muted);font-size:17px;line-height:1.6;max-width:560px;}
-  .sec{padding:clamp(70px,10vw,120px) 0;}
-
-  /* ---------- PRELOADER ---------- */
-  #loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:transform .9s cubic-bezier(.76,0,.24,1);}
-  #loader.done{transform:translateY(-100%);}
-  .loader-logo{font-family:'Fraunces',serif;font-size:clamp(34px,7vw,64px);overflow:hidden;}
-  .loader-logo span{display:inline-block;transform:translateY(110%);animation:lUp .8s cubic-bezier(.22,1,.36,1) forwards;}
-  .loader-logo span:nth-child(2){animation-delay:.08s;}
-  .loader-logo span:nth-child(3){animation-delay:.16s;}
-  .loader-logo em{font-style:italic;color:var(--tan);}
-  @keyframes lUp{to{transform:translateY(0);}}
-
-  /* ---------- NAV ---------- */
-  .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 6vw;transition:background .35s,backdrop-filter .35s,box-shadow .35s;}
-  .nav.scrolled{background:rgba(29,23,18,.78);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);}
-  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:21px;white-space:nowrap;}
-  .logo em{font-style:italic;color:var(--tan);}
-  .nav-links{display:flex;gap:26px;font-size:14px;color:var(--muted);}
-  .nav-links a{transition:color .25s;}
-  .nav-links a:hover{color:var(--paper);}
-  .nav-right{display:flex;align-items:center;gap:12px;}
-  .langs{display:flex;gap:6px;}
-  .lang-btn{font:inherit;font-size:11px;letter-spacing:.1em;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:none;color:var(--muted);cursor:pointer;transition:.25s;}
-  .lang-btn.active{color:#1a1410;background:var(--tan);border-color:var(--tan);}
+  .sec{padding:clamp(70px,10vw,110px) 0;}
+  /* NAV */
+  .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 6vw;transition:.35s;}
+  .nav.scrolled{background:rgba(29,23,18,.8);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:21px;} .logo em{font-style:italic;color:var(--tan);}
+  .nav-links{display:flex;gap:24px;font-size:14px;color:var(--muted);} .nav-links a:hover{color:var(--paper);}
   .nav-cta{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(246,241,230,.35);border-radius:999px;transition:.3s;white-space:nowrap;}
   .nav-cta:hover{background:var(--tan);border-color:var(--tan);color:#1a1410;}
-
-  /* ---------- HERO ---------- */
+  /* HERO */
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:url('page-01.jpg') center/cover no-repeat;}
-  .hero-media{position:absolute;inset:-12% 0;will-change:transform;}
-  .hero-media video{width:100%;height:100%;object-fit:cover;}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,12,.55),rgba(20,16,12,.12) 40%,rgba(20,16,12,.94) 100%);}
-  .hero-in{position:relative;z-index:2;padding:0 6vw 10vh;width:100%;max-width:1160px;margin:0 auto;}
-  .hero h1{font-size:clamp(42px,7.5vw,88px);margin:14px 0 20px;}
-  .hero h1 em{font-style:italic;color:var(--tan);}
-  .hero .sub{margin-bottom:32px;}
+  .hero-in{position:relative;z-index:2;padding:0 6vw 10vh;max-width:1160px;margin:0 auto;width:100%;}
+  .hero h1{font-size:clamp(42px,7.5vw,88px);margin:14px 0 20px;} .hero h1 em{font-style:italic;color:var(--tan);}
+  .hero .sub{margin-bottom:30px;}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;font-weight:600;font-size:15px;border:0;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s;}
-  .btn-primary{background:var(--tan);color:#1a1410;}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(199,168,119,.28);}
-  .btn-ghost{border:1px solid rgba(246,241,230,.35);background:none;color:var(--paper);}
-  .btn-ghost:hover{background:rgba(246,241,230,.08);}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;font-weight:600;font-size:15px;border:0;cursor:pointer;transition:.25s;}
+  .btn-primary{background:var(--tan);color:#1a1410;} .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(199,168,119,.28);}
+  .btn-ghost{border:1px solid rgba(246,241,230,.35);background:none;color:var(--paper);} .btn-ghost:hover{background:rgba(246,241,230,.08);}
   .fx{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
   .hero.ready .fx{opacity:1;transform:none;}
-  .hero.ready .fx:nth-child(2){transition-delay:.15s;}
-  .hero.ready .fx:nth-child(3){transition-delay:.3s;}
-  .hero.ready .fx:nth-child(4){transition-delay:.45s;}
-  .scroll-cue{position:absolute;z-index:2;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(246,241,230,.75);font-size:11px;letter-spacing:.25em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;}
-  .scroll-cue i{width:1px;height:34px;background:currentColor;animation:cue 1.8s ease-in-out infinite;}
-  @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.5;}50%{transform:scaleY(1);opacity:1;}}
-
-  /* ---------- MARQUEE ---------- */
+  .hero.ready .fx:nth-child(2){transition-delay:.15s;} .hero.ready .fx:nth-child(3){transition-delay:.3s;} .hero.ready .fx:nth-child(4){transition-delay:.45s;}
+  /* MARQUEE + STATS */
   .marquee{border-block:1px solid var(--line);background:var(--bg2);overflow:hidden;padding:14px 0;}
   .mq-track{display:flex;width:max-content;animation:mq 30s linear infinite;}
-  .marquee:hover .mq-track{animation-play-state:paused;}
   .mq-track span{font-family:'Fraunces',serif;font-style:italic;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding:0 22px;}
   .mq-track b{color:var(--tan);font-weight:500;}
   @keyframes mq{to{transform:translateX(-50%);}}
-
-  /* ---------- STATS ---------- */
   .stats-in{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);background:var(--bg2);}
-  .stat{padding:26px 6vw;text-align:center;border-left:1px solid var(--line);}
-  .stat:first-child{border-left:0;}
+  .stat{padding:26px 6vw;text-align:center;border-left:1px solid var(--line);} .stat:first-child{border-left:0;}
   .stat b{display:block;font-family:'Fraunces',serif;font-size:clamp(24px,3.4vw,40px);color:var(--tan);}
   .stat span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
-
-  /* ---------- SPECIALS ---------- */
+  /* SPECIALS */
   .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px;}
-  .spec{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:26px 22px;transition:transform .35s,border-color .35s;}
+  .spec{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:26px 22px;transition:.35s;}
   .spec:hover{transform:translateY(-6px);border-color:rgba(199,168,119,.5);}
   .spec .badge{position:absolute;top:14px;right:14px;background:var(--red);color:#fff;font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:6px 10px;border-radius:999px;}
   .spec .badge.gold{background:var(--tan);color:#1a1410;}
   .spec h3{font-family:'Fraunces',serif;font-style:italic;font-size:20px;margin-bottom:8px;padding-right:70px;}
   .spec p{color:var(--muted);font-size:13.5px;line-height:1.6;margin-bottom:18px;min-height:44px;}
-  .spec-row{display:flex;align-items:baseline;gap:10px;}
-  .spec-row .dots{flex:1;border-bottom:1px dotted rgba(246,241,230,.3);transform:translateY(-4px);}
+  .spec-row{display:flex;align-items:baseline;gap:10px;} .spec-row .dots{flex:1;border-bottom:1px dotted rgba(246,241,230,.3);transform:translateY(-4px);}
   .spec-row .price{font-family:'Fraunces',serif;font-size:17px;color:var(--tan);white-space:nowrap;}
-
-  /* ---------- SECTIONS STRIP ---------- */
+  /* STRIP */
   .strip{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:44px 6vw 18px;}
-  .strip::-webkit-scrollbar{height:6px;}
-  .strip::-webkit-scrollbar-thumb{background:#3a2f24;border-radius:99px;}
-  .jump{flex:0 0 190px;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;color:var(--paper);font:inherit;transition:border-color .3s;}
+  .jump{flex:0 0 190px;scroll-snap-align:start;background:var(--bg2);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;color:var(--paper);font:inherit;transition:.3s;}
   .jump:hover{border-color:rgba(199,168,119,.6);}
-  .jump img{width:100%;height:250px;object-fit:cover;transition:transform .5s;}
-  .jump:hover img{transform:scale(1.06);}
+  .jump img{width:100%;height:250px;object-fit:cover;transition:transform .5s;} .jump:hover img{transform:scale(1.06);}
   .jump .lbl{display:block;padding:12px;font-family:'Fraunces',serif;font-style:italic;font-size:15px;text-align:left;}
-
-  /* ---------- COMPARISON ---------- */
+  /* COMPARISON */
   .cmp-wrap{overflow-x:auto;margin-top:44px;}
   .cmp-table{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:15px;}
   .cmp-table th,.cmp-table td{padding:16px 18px;text-align:center;border-bottom:1px solid var(--line);}
   .cmp-table th:first-child,.cmp-table td:first-child{text-align:left;color:var(--paper);font-weight:500;}
   .cmp-table thead th{background:var(--bg2);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-  .cmp-table td{color:var(--muted);}
-  .cmp-table tr:last-child td{border-bottom:0;}
-  .cmp-table .win{background:rgba(199,168,119,.10);color:var(--paper);}
-  .cmp-table thead .win{background:rgba(199,168,119,.18);color:var(--tan);}
-  .yes{color:var(--tan);font-weight:700;}
-  .no{color:rgba(246,241,230,.28);}
-
-  /* ---------- BOOK ---------- */
+  .cmp-table td{color:var(--muted);} .cmp-table tr:last-child td{border-bottom:0;}
+  .cmp-table .win{background:rgba(199,168,119,.10);color:var(--paper);} .cmp-table thead .win{background:rgba(199,168,119,.18);color:var(--tan);}
+  .yes{color:var(--tan);font-weight:700;} .no{color:rgba(246,241,230,.28);}
+  /* BOOK — ЗАКРЫТАЯ КНИГА, КЛИК ЛИСТАЕТ */
   .book-sec{background:var(--bg2);border-block:1px solid var(--line);}
-  .book-frame{position:relative;width:100%;max-width:640px;aspect-ratio:2/3;margin:44px auto 0;}
-  .book-frame::before{content:"";position:absolute;inset:-18px -46px;background:var(--paper);border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.5);}
-  #book{position:relative;z-index:1;width:100% !important;height:100% !important;touch-action:pan-y;}
+  .book-frame{position:relative;width:min(92vw,700px);aspect-ratio:2/3;margin:44px auto 0;}
+  .book-frame::before{content:"";position:absolute;inset:-20px -50px;background:var(--paper);border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.5);}
+  #book{position:relative;z-index:1;width:100% !important;height:100% !important;touch-action:pan-y;cursor:pointer;}
   #book img{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;pointer-events:none;}
   .page{background:#fff;}
-  .book-controls{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:22px;margin-top:36px;}
-  .flip-btn{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;}
+  .book-controls{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:22px;margin-top:40px;}
+  .flip-btn{width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;}
   .flip-btn:hover{background:var(--tan);color:#1a1410;border-color:var(--tan);transform:scale(1.06);}
   .flip-btn:disabled{opacity:.3;transform:none;background:transparent;color:var(--paper);}
   .flip-btn svg{width:20px;height:20px;}
   .page-counter{font-family:'Fraunces',serif;font-style:italic;min-width:90px;text-align:center;color:var(--tan);}
   .book-tip{margin-top:14px;text-align:center;font-size:13px;color:var(--muted);}
-
-  /* ---------- REVIEWS ---------- */
+  /* REVIEWS / RESERVE / FAQ */
   .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;}
   .rev{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px 24px;}
   .rev .stars{color:var(--tan);letter-spacing:3px;font-size:14px;margin-bottom:14px;}
   .rev p{font-family:'Fraunces',serif;font-style:italic;font-size:17px;line-height:1.5;margin-bottom:18px;}
   .rev .who{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
-
-  /* ---------- RESERVE ---------- */
   .res-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start;margin-top:44px;}
   .res-info p{color:var(--muted);line-height:1.8;font-size:15px;}
   .res-info .big{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--paper);margin:18px 0 6px;}
   .field{margin-bottom:14px;}
   .field label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-  .field input,.field select{width:100%;padding:14px 16px;background:rgba(246,241,230,.06);border:1px solid var(--line);border-radius:10px;color:var(--paper);font:inherit;font-size:15px;transition:border-color .25s;}
+  .field input,.field select{width:100%;padding:14px 16px;background:rgba(246,241,230,.06);border:1px solid var(--line);border-radius:10px;color:var(--paper);font:inherit;font-size:15px;}
   .field input:focus,.field select:focus{outline:none;border-color:var(--tan);}
   .field select option{background:var(--bg2);}
-  #resOk{display:none;margin-top:14px;color:var(--tan);font-family:'Fraunces',serif;font-style:italic;}
-  #resOk.show{display:block;}
-
-  /* ---------- FAQ ---------- */
+  #resOk{display:none;margin-top:14px;color:var(--tan);font-family:'Fraunces',serif;font-style:italic;} #resOk.show{display:block;}
   .faq-list{margin-top:44px;border-top:1px solid var(--line);}
   .faq-list details{border-bottom:1px solid var(--line);}
   .faq-list summary{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;cursor:pointer;font-family:'Fraunces',serif;font-size:19px;list-style:none;}
@@ -170,102 +113,64 @@
   .faq-list summary i{font-style:normal;color:var(--tan);font-size:22px;transition:transform .3s;}
   .faq-list details[open] summary i{transform:rotate(45deg);}
   .faq-list .a{padding:0 0 22px;color:var(--muted);line-height:1.7;font-size:15px;max-width:720px;}
-
-  /* ---------- CTA + FOOTER ---------- */
-  .cta{text-align:center;}
-  .cta h2{font-size:clamp(34px,6vw,64px);}
-  .cta h2 em{font-style:italic;color:var(--tan);}
-  .cta .sub{margin:0 auto 30px;}
-  .cta .hero-actions{justify-content:center;}
+  /* CTA + FOOTER */
+  .cta{text-align:center;} .cta h2{font-size:clamp(34px,6vw,64px);} .cta h2 em{font-style:italic;color:var(--tan);}
+  .cta .sub{margin:0 auto 30px;} .cta .hero-actions{justify-content:center;}
   footer{border-top:1px solid var(--line);padding:48px 6vw 36px;color:var(--muted);font-size:14px;}
   .foot-in{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;}
   footer h4{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--paper);margin-bottom:10px;font-weight:500;}
   footer a:hover{color:var(--paper);}
   .foot-bottom{max-width:1160px;margin:36px auto 0;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;}
-
-  /* ---------- REVEAL ---------- */
-  .rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1);}
-  .rv.in{opacity:1;transform:none;}
-
-  @media (max-width:960px){
-    .cards{grid-template-columns:repeat(2,1fr);}
-    .rev-grid{grid-template-columns:1fr;}
-    .res-grid{grid-template-columns:1fr;gap:32px;}
-    .foot-in{grid-template-columns:1fr;}
-    .nav-links{display:none;}
-  }
-  @media (max-width:640px){
-    .cards{grid-template-columns:1fr;}
-    .stats-in{grid-template-columns:repeat(2,1fr);}
-    .stat{border-top:1px solid var(--line);}
-    .stat:nth-child(-n+2){border-top:0;}
-    .stat:nth-child(3){border-left:0;}
-    .book-frame::before{inset:-12px -12px;}
-  }
+  .rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1);} .rv.in{opacity:1;transform:none;}
+  @media (max-width:960px){.cards{grid-template-columns:repeat(2,1fr);}.rev-grid{grid-template-columns:1fr;}.res-grid{grid-template-columns:1fr;gap:32px;}.foot-in{grid-template-columns:1fr;}.nav-links{display:none;}}
+  @media (max-width:640px){.cards{grid-template-columns:1fr;}.stats-in{grid-template-columns:repeat(2,1fr);}.stat{border-top:1px solid var(--line);}.stat:nth-child(-n+2){border-top:0;}.stat:nth-child(3){border-left:0;}.book-frame{width:min(94vw,520px);}.book-frame::before{inset:-12px -16px;}}
   @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important;}}
 </style>
 </head>
 <body>
 
-<div id="loader"><div class="loader-logo"><span>In&nbsp;</span><span><em>Tempo</em></span><span>.</span></div></div>
-
 <nav class="nav" id="nav">
   <div class="logo">In <em>Tempo</em></div>
   <div class="nav-links">
-    <a href="#menu" data-i18n="nav_menu">Меню</a>
-    <a href="#comparison" data-i18n="nav_cmp">Сравнение</a>
-    <a href="#reviews" data-i18n="nav_rev">Отзывы</a>
-    <a href="#reserve" data-i18n="nav_res">Бронь</a>
+    <a href="#menu">Меню</a><a href="#comparison">Сравнение</a><a href="#reviews">Отзывы</a><a href="#reserve">Бронь</a>
   </div>
-  <div class="nav-right">
-    <div class="langs">
-      <button class="lang-btn active" data-lang="ru">RU</button>
-      <button class="lang-btn" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="hy">HY</button>
-    </div>
-    <a class="nav-cta" href="#menu" data-i18n="nav_cta">Открыть меню</a>
-  </div>
+  <a class="nav-cta" href="#menu">Открыть меню</a>
 </nav>
 
 <header class="hero" id="hero">
-  <div class="hero-media">
-    <video autoplay muted loop playsinline preload="metadata" poster="page-01.jpg">
-      <source src="hero.mp4" type="video/mp4">
-    </video>
-  </div>
+  <video autoplay muted loop playsinline preload="metadata" poster="page-01.jpg">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
   <div class="hero-in">
-    <p class="kicker fx" data-i18n="hero_kicker">italian kitchen · Ереван</p>
-    <h1 class="fx" data-i18n-html="hero_title">Меню читают,<br>как <em>хорошую книгу</em>.</h1>
-    <p class="sub fx" data-i18n="hero_sub">52 страницы блюд In Tempo — от закусок до дижестива. Листается пальцем, работает на любом устройстве.</p>
+    <p class="kicker fx">italian kitchen · Ереван</p>
+    <h1 class="fx">Меню читают,<br>как <em>хорошую книгу</em>.</h1>
+    <p class="sub fx">52 страницы блюд In Tempo — от закусок до дижестива. Книга закрыта — нажмите, чтобы открыть.</p>
     <div class="hero-actions fx">
-      <a class="btn btn-primary" href="#menu" data-i18n="hero_c1">Листать меню →</a>
-      <a class="btn btn-ghost" href="#comparison" data-i18n="hero_c2">Почему не PDF?</a>
+      <a class="btn btn-primary" href="#menu">Открыть книгу →</a>
+      <a class="btn btn-ghost" href="#comparison">Почему не PDF?</a>
     </div>
   </div>
-  <div class="scroll-cue"><i></i><span data-i18n="hero_scroll">scroll</span></div>
 </header>
 
-<div class="marquee">
-  <div class="mq-track">
-    <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
-    <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
-    <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
-    <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
-  </div>
-</div>
+<div class="marquee"><div class="mq-track">
+  <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
+  <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
+  <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
+  <span>antipasti <b>·</b> pasta <b>·</b> pizza <b>·</b> vino <b>·</b> dolci <b>·</b> espresso <b>·</b></span>
+</div></div>
 
 <div class="stats-in">
-  <div class="stat rv"><b>52</b><span data-i18n="s1">страницы меню</span></div>
-  <div class="stat rv"><b>120+</b><span data-i18n="s2">блюд и напитков</span></div>
-  <div class="stat rv"><b>1 сек</b><span data-i18n="s3">чтобы открыть</span></div>
-  <div class="stat rv"><b>100%</b><span data-i18n="s4">работает с телефона</span></div>
+  <div class="stat rv"><b>52</b><span>страницы меню</span></div>
+  <div class="stat rv"><b>120+</b><span>блюд и напитков</span></div>
+  <div class="stat rv"><b>1 сек</b><span>чтобы открыть</span></div>
+  <div class="stat rv"><b>100%</b><span>работает с телефона</span></div>
 </div>
 
 <section class="sec">
   <div class="wrap">
-    <p class="kicker rv" data-i18n="spec_k">специалитеты</p>
-    <h2 class="rv" data-i18n="spec_t">Специалитеты шефа</h2>
-    <p class="sub rv" data-i18n="spec_s">То, ради чего гости возвращаются.</p>
+    <p class="kicker rv">специалитеты</p>
+    <h2 class="rv">Специалитеты шефа</h2>
+    <p class="sub rv">То, ради чего гости возвращаются.</p>
     <div class="cards">
       <div class="spec rv"><span class="badge">hit</span><h3>Спагетти Аматричана</h3><p>Гуанчале, крем-чиз, базилик, пармезан 24 месяца</p><div class="spec-row"><span class="dots"></span><span class="price">4 900 AMD</span></div></div>
       <div class="spec rv"><span class="badge gold">season</span><h3>Тальолини с трюфелем</h3><p>Сезонный трюфель, сливочное масло, пармезан</p><div class="spec-row"><span class="dots"></span><span class="price">6 200 AMD</span></div></div>
@@ -277,9 +182,9 @@
 
 <section class="sec" style="padding-top:0;">
   <div class="wrap">
-    <p class="kicker rv" data-i18n="sec_k">разделы</p>
-    <h2 class="rv" data-i18n="sec_t">Откройте нужный раздел</h2>
-    <p class="sub rv" data-i18n="sec_s">Нажмите на страницу — книга откроется на ней.</p>
+    <p class="kicker rv">разделы</p>
+    <h2 class="rv">Откройте нужный раздел</h2>
+    <p class="sub rv">Нажмите на страницу — книга откроется на ней.</p>
   </div>
   <div class="strip rv">
     <button class="jump" data-page="5"><img src="page-06.jpg" alt="Закуски" loading="lazy"><span class="lbl">Закуски</span></button>
@@ -292,52 +197,47 @@
 
 <section class="sec" id="comparison" style="padding-top:0;">
   <div class="wrap">
-    <p class="kicker rv" data-i18n="cmp_k">сравнение</p>
-    <h2 class="rv" data-i18n="cmp_t">Почему книга лучше PDF</h2>
-    <p class="sub rv" data-i18n="cmp_s">Три формата меню глазами гостя — честно и по пунктам.</p>
+    <p class="kicker rv">сравнение</p>
+    <h2 class="rv">Почему книга лучше PDF</h2>
+    <p class="sub rv">Три формата меню глазами гостя — честно и по пунктам.</p>
     <div class="cmp-wrap rv">
       <table class="cmp-table">
-        <thead>
-          <tr><th data-i18n="cmp_h1">Возможность</th><th data-i18n="cmp_h2">Бумажное меню</th><th data-i18n="cmp_h3">PDF-файл</th><th class="win" data-i18n="cmp_h4">Меню-книга In Tempo</th></tr>
-        </thead>
+        <thead><tr><th>Возможность</th><th>Бумажное меню</th><th>PDF-файл</th><th class="win">Меню-книга In Tempo</th></tr></thead>
         <tbody>
-          <tr><td data-i18n="cmp_r1">Открыть за 1 секунду</td><td class="no">—</td><td class="no">—</td><td class="win yes">✓</td></tr>
-          <tr><td data-i18n="cmp_r2">Листается как настоящая книга</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
-          <tr><td data-i18n="cmp_r3">Удобно с телефона одной рукой</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
-          <tr><td data-i18n="cmp_r4">Читается без зума и прокрутки</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
-          <tr><td data-i18n="cmp_r5">Обновляется без перепечатки</td><td class="no">—</td><td class="no">—</td><td class="win yes">✓</td></tr>
-          <tr><td data-i18n="cmp_r6">Без установки приложений</td><td class="yes">✓</td><td class="yes">✓</td><td class="win yes">✓</td></tr>
-          <tr><td data-i18n="cmp_r7">Не требует печати и бумаги</td><td class="no">—</td><td class="yes">✓</td><td class="win yes">✓</td></tr>
+          <tr><td>Открыть за 1 секунду</td><td class="no">—</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Листается как настоящая книга</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Удобно с телефона одной рукой</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Читается без зума и прокрутки</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Обновляется без перепечатки</td><td class="no">—</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Без установки приложений</td><td class="yes">✓</td><td class="yes">✓</td><td class="win yes">✓</td></tr>
+          <tr><td>Не требует печати и бумаги</td><td class="no">—</td><td class="yes">✓</td><td class="win yes">✓</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
+
 <section class="sec book-sec" id="menu">
   <div class="wrap" style="text-align:center;">
-    <p class="kicker rv" data-i18n="book_k">меню</p>
-    <h2 class="rv" data-i18n="book_t">Откройте первую страницу</h2>
-    <p class="sub rv" style="margin:0 auto;" data-i18n="book_s">Свайп, мышь или стрелки — книга ответит как бумажная.</p>
+    <p class="kicker rv">меню</p>
+    <h2 class="rv">Книга закрыта. Откройте её.</h2>
+    <p class="sub rv" style="margin:0 auto;">Нажмите на обложку или кнопку — и листайте: клик, свайп или стрелки ← →.</p>
     <div class="book-frame rv">
       <div id="book"></div>
     </div>
     <div class="book-controls">
-      <button class="flip-btn" id="prevBtn" aria-label="Предыдущая страница">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
+      <button class="flip-btn" id="prevBtn" aria-label="Предыдущая страница"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
       <div class="page-counter"><span id="pageNow">1</span> / <span id="pageTotal">52</span></div>
-      <button class="flip-btn" id="nextBtn" aria-label="Следующая страница">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
+      <button class="flip-btn" id="nextBtn" aria-label="Следующая страница"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
     </div>
-    <p class="book-tip" data-i18n="book_tip">Свайп или стрелки клавиатуры ← →</p>
+    <p class="book-tip">Клик по странице листает · свайп на телефоне · стрелки на клавиатуре</p>
   </div>
 </section>
 
 <section class="sec" id="reviews">
   <div class="wrap">
-    <p class="kicker rv" data-i18n="rev_k">отзывы</p>
-    <h2 class="rv" data-i18n="rev_t">Гости о нас</h2>
+    <p class="kicker rv">отзывы</p>
+    <h2 class="rv">Гости о нас</h2>
     <div class="rev-grid">
       <div class="rev rv"><div class="stars">★★★★★</div><p>«Листаешь меню как книгу — ощущение, что держишь в руках что-то дорогое.»</p><div class="who">Арам · Ереван</div></div>
       <div class="rev rv"><div class="stars">★★★★★</div><p>"Finally a menu that works perfectly on my phone. The pasta photos sold me."</p><div class="who">Laura · Berlin</div></div>
@@ -348,25 +248,23 @@
 
 <section class="sec" id="reserve" style="padding-top:0;">
   <div class="wrap">
-    <p class="kicker rv" data-i18n="res_k">бронь</p>
-    <h2 class="rv" data-i18n="res_t">Столик уже ждёт</h2>
+    <p class="kicker rv">бронь</p>
+    <h2 class="rv">Столик уже ждёт</h2>
     <div class="res-grid">
       <div class="res-info rv">
-        <p data-i18n="res_s">Оставьте заявку — подтвердим в WhatsApp за пару минут.</p>
-        <div class="big" data-i18n="foot_addr">Ереван, ул. Абабяна 12</div>
-        <p data-i18n="foot_hours">Ежедневно 11:00–23:00</p>
+        <p>Оставьте заявку — подтвердим в WhatsApp за пару минут.</p>
+        <div class="big">Ереван, ул. Абабяна 12</div>
+        <p>Ежедневно 11:00–23:00</p>
         <div class="big">+374 00 000 000</div>
         <p><a href="mailto:hello@intempo.am">hello@intempo.am</a></p>
       </div>
       <form class="rv" id="resForm" novalidate>
-        <div class="field"><label data-i18n="res_name">Ваше имя</label><input type="text" name="name" required></div>
-        <div class="field"><label data-i18n="res_phone">Телефон</label><input type="tel" name="phone" required></div>
-        <div class="field"><label data-i18n="res_date">Дата и время</label><input type="datetime-local" name="date" required></div>
-        <div class="field"><label data-i18n="res_guests">Гостей</label>
-          <select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8+</option></select>
-        </div>
-        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;" data-i18n="res_btn">Забронировать в WhatsApp</button>
-        <p id="resOk" data-i18n="res_ok">Заявка сформирована — открыли WhatsApp.</p>
+        <div class="field"><label>Ваше имя</label><input type="text" name="name" required></div>
+        <div class="field"><label>Телефон</label><input type="tel" name="phone" required></div>
+        <div class="field"><label>Дата и время</label><input type="datetime-local" name="date" required></div>
+        <div class="field"><label>Гостей</label><select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8+</option></select></div>
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;">Забронировать в WhatsApp</button>
+        <p id="resOk">Заявка сформирована — открыли WhatsApp.</p>
       </form>
     </div>
   </div>
@@ -374,199 +272,106 @@
 
 <section class="sec" id="faq" style="padding-top:0;">
   <div class="wrap">
-    <p class="kicker rv" data-i18n="faq_k">вопросы</p>
-    <h2 class="rv" data-i18n="faq_t">Частые вопросы</h2>
+    <p class="kicker rv">вопросы</p>
+    <h2 class="rv">Частые вопросы</h2>
     <div class="faq-list rv">
-      <details><summary><span data-i18n="faq_q1">Нужно ли скачивать приложение?</span><i>+</i></summary><p class="a" data-i18n="faq_a1">Нет, меню работает прямо в браузере.</p></details>
-      <details><summary><span data-i18n="faq_q2">Меню обновляется?</span><i>+</i></summary><p class="a" data-i18n="faq_a2">Да, сезонные блюда появляются сразу.</p></details>
-      <details><summary><span data-i18n="faq_q3">Работает без интернета?</span><i>+</i></summary><p class="a" data-i18n="faq_a3">Страницы кешируются после первого открытия.</p></details>
-      <details><summary><span data-i18n="faq_q4">Можно забронировать стол?</span><i>+</i></summary><p class="a" data-i18n="faq_a4">Да, форма выше отправит заявку в WhatsApp.</p></details>
+      <details><summary>Нужно ли скачивать приложение?<i>+</i></summary><p class="a">Нет, меню работает прямо в браузере.</p></details>
+      <details><summary>Меню обновляется?<i>+</i></summary><p class="a">Да, сезонные блюда появляются сразу.</p></details>
+      <details><summary>Работает без интернета?<i>+</i></summary><p class="a">Страницы кешируются после первого открытия.</p></details>
+      <details><summary>Можно забронировать стол?<i>+</i></summary><p class="a">Да, форма выше отправит заявку в WhatsApp.</p></details>
     </div>
   </div>
 </section>
 
 <section class="sec cta">
   <div class="wrap">
-    <h2 class="rv" data-i18n-html="cta_t">Столик уже <em>ждёт</em>.</h2>
-    <p class="sub rv" data-i18n="cta_s">Приходите голодными — остальное сделает кухня.</p>
+    <h2 class="rv">Столик уже <em>ждёт</em>.</h2>
+    <p class="sub rv">Приходите голодными — остальное сделает кухня.</p>
     <div class="hero-actions rv">
-      <a class="btn btn-primary" href="tel:+374000000" data-i18n="cta_c1">Позвонить</a>
-      <a class="btn btn-ghost" href="#menu" data-i18n="cta_c2">Листать меню</a>
+      <a class="btn btn-primary" href="tel:+374000000">Позвонить</a>
+      <a class="btn btn-ghost" href="#menu">Листать меню</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="foot-in">
-    <div><h4>In Tempo</h4><p data-i18n="foot_about">Итальянская кухня в сердце Еревана. Меню-книга, которую хочется листать.</p></div>
-    <div><h4 data-i18n="foot_c">Контакты</h4><p><a href="tel:+374000000">+374 00 000 000</a><br><a href="mailto:hello@intempo.am">hello@intempo.am</a></p></div>
-    <div><h4 data-i18n="foot_s">Соцсети</h4><p><a href="#">Instagram</a><br><a href="#">Telegram</a></p></div>
+    <div><h4>In Tempo</h4><p>Итальянская кухня в сердце Еревана. Меню-книга, которую хочется листать.</p></div>
+    <div><h4>Контакты</h4><p><a href="tel:+374000000">+374 00 000 000</a><br><a href="mailto:hello@intempo.am">hello@intempo.am</a></p></div>
+    <div><h4>Соцсети</h4><p><a href="#">Instagram</a><br><a href="#">Telegram</a></p></div>
   </div>
-  <div class="foot-bottom"><span>© 2026 In Tempo · Italian kitchen</span><span data-i18n="foot_addr2">Ереван · улица Абабяна 12</span></div>
+  <div class="foot-bottom"><span>© 2026 In Tempo · Italian kitchen</span><span>Ереван · улица Абабяна 12</span></div>
 </footer>
 
 <script src="page-flip.browser.js"></script>
 <script>
-  /* ---------- i18n RU / EN / HY ---------- */
-  const DICT = {
-    ru:{nav_menu:'Меню',nav_cmp:'Сравнение',nav_rev:'Отзывы',nav_res:'Бронь',nav_cta:'Открыть меню',
-      hero_kicker:'italian kitchen · Ереван',hero_title:'Меню читают,<br>как <em>хорошую книгу</em>.',
-      hero_sub:'52 страницы блюд In Tempo — от закусок до дижестива. Листается пальцем, работает на любом устройстве.',
-      hero_c1:'Листать меню →',hero_c2:'Почему не PDF?',hero_scroll:'scroll',
-      s1:'страницы меню',s2:'блюд и напитков',s3:'чтобы открыть',s4:'работает с телефона',
-      spec_k:'специалитеты',spec_t:'Специалитеты шефа',spec_s:'То, ради чего гости возвращаются.',
-      sec_k:'разделы',sec_t:'Откройте нужный раздел',sec_s:'Нажмите на страницу — книга откроется на ней.',
-      cmp_k:'сравнение',cmp_t:'Почему книга лучше PDF',cmp_s:'Три формата меню глазами гостя — честно и по пунктам.',
-      cmp_h1:'Возможность',cmp_h2:'Бумажное меню',cmp_h3:'PDF-файл',cmp_h4:'Меню-книга In Tempo',
-      cmp_r1:'Открыть за 1 секунду',cmp_r2:'Листается как настоящая книга',cmp_r3:'Удобно с телефона одной рукой',
-      cmp_r4:'Читается без зума и прокрутки',cmp_r5:'Обновляется без перепечатки',cmp_r6:'Без установки приложений',cmp_r7:'Не требует печати и бумаги',
-      book_k:'меню',book_t:'Откройте первую страницу',book_s:'Свайп, мышь или стрелки — книга ответит как бумажная.',book_tip:'Свайп или стрелки клавиатуры ← →',
-      rev_k:'отзывы',rev_t:'Гости о нас',
-      res_k:'бронь',res_t:'Столик уже ждёт',res_s:'Оставьте заявку — подтвердим в WhatsApp за пару минут.',
-      res_name:'Ваше имя',res_phone:'Телефон',res_date:'Дата и время',res_guests:'Гостей',
-      res_btn:'Забронировать в WhatsApp',res_ok:'Заявка сформирована — открыли WhatsApp.',
-      faq_k:'вопросы',faq_t:'Частые вопросы',
-      faq_q1:'Нужно ли скачивать приложение?',faq_a1:'Нет, меню работает прямо в браузере.',
-      faq_q2:'Меню обновляется?',faq_a2:'Да, сезонные блюда появляются сразу.',
-      faq_q3:'Работает без интернета?',faq_a3:'Страницы кешируются после первого открытия.',
-      faq_q4:'Можно забронировать стол?',faq_a4:'Да, форма выше отправит заявку в WhatsApp.',
-      cta_t:'Столик уже <em>ждёт</em>.',cta_s:'Приходите голодными — остальное сделает кухня.',cta_c1:'Позвонить',cta_c2:'Листать меню',
-      foot_about:'Итальянская кухня в сердце Еревана. Меню-книга, которую хочется листать.',foot_c:'Контакты',foot_s:'Соцсети',
-      foot_addr:'Ереван, ул. Абабяна 12',foot_hours:'Ежедневно 11:00–23:00',foot_addr2:'Ереван · улица Абабяна 12'},
-    en:{nav_menu:'Menu',nav_cmp:'Comparison',nav_rev:'Reviews',nav_res:'Booking',nav_cta:'Open menu',
-      hero_kicker:'italian kitchen · Yerevan',hero_title:'The menu reads<br>like a <em>good book</em>.',
-      hero_sub:'52 pages of In Tempo dishes — from antipasti to digestivo. Flips with your finger, works on any device.',
-      hero_c1:'Flip the menu →',hero_c2:'Why not PDF?',hero_scroll:'scroll',
-      s1:'menu pages',s2:'dishes & drinks',s3:'to open',s4:'works on mobile',
-      spec_k:'specials',spec_t:"Chef's specials",spec_s:'The dishes guests come back for.',
-      sec_k:'sections',sec_t:'Jump to any section',sec_s:'Tap a page — the book opens right there.',
-      cmp_k:'comparison',cmp_t:'Why the book beats PDF',cmp_s:'Three menu formats through a guest’s eyes.',
-      cmp_h1:'Feature',cmp_h2:'Paper menu',cmp_h3:'PDF file',cmp_h4:'In Tempo book-menu',
-      cmp_r1:'Opens in 1 second',cmp_r2:'Flips like a real book',cmp_r3:'One-hand friendly on phone',
-      cmp_r4:'Readable without zoom',cmp_r5:'Updates without reprint',cmp_r6:'No app install needed',cmp_r7:'No paper, no printing',
-      book_k:'menu',book_t:'Open the first page',book_s:'Swipe, mouse or arrows — the book responds like paper.',book_tip:'Swipe or arrow keys ← →',
-      rev_k:'reviews',rev_t:'Guests about us',
-      res_k:'booking',res_t:'Your table is waiting',res_s:'Leave a request — we confirm on WhatsApp in minutes.',
-      res_name:'Your name',res_phone:'Phone',res_date:'Date & time',res_guests:'Guests',
-      res_btn:'Reserve via WhatsApp',res_ok:'Request ready — WhatsApp opened.',
-      faq_k:'faq',faq_t:'Frequently asked',
-      faq_q1:'Do I need to install an app?',faq_a1:'No, the menu runs right in your browser.',
-      faq_q2:'Does the menu get updated?',faq_a2:'Yes, seasonal dishes appear instantly.',
-      faq_q3:'Does it work offline?',faq_a3:'Pages cache after the first open.',
-      faq_q4:'Can I book a table?',faq_a4:'Yes, the form above sends a WhatsApp request.',
-      cta_t:'Your table is <em>waiting</em>.',cta_s:'Come hungry — the kitchen does the rest.',cta_c1:'Call us',cta_c2:'Flip the menu',
-      foot_about:'Italian cuisine in the heart of Yerevan. A menu-book you want to flip.',foot_c:'Contacts',foot_s:'Social',
-      foot_addr:'Yerevan, Ababyan 12',foot_hours:'Daily 11:00–23:00',foot_addr2:'Yerevan · Ababyan 12'},
-    hy:{nav_menu:'Մենյու',nav_cmp:'Համեմատություն',nav_rev:'Կարծիքներ',nav_res:'Ամրագրում',nav_cta:'Բացել մենյուն',
-      hero_kicker:'իտալական խոհանոց · Երևան',hero_title:'Մենյուն կարդում են<br>ինչպես <em>լավ գիրք</em>։',
-      hero_sub:'In Tempo-ի 52 էջ՝ նախուտեստներից մինչև դիժեստիվ։ Թերթվում է մատով, աշխատում է ցանկացած սարքում։',
-      hero_c1:'Թերթել մենյուն →',hero_c2:'Ինչու ոչ PDF?',hero_scroll:'ոլորել',
-      s1:'մենյուի էջ',s2:'ուտեստ և ըմպելիք',s3:'բացելու համար',s4:'աշխատում է հեռախոսով',
-      spec_k:'հատուկ առաջարկ',spec_t:'Շեֆի հատուկ ուտեստներ',spec_s:'Ուտեստներ, որոնց համար հյուրերը վերադառնում են։',
-      sec_k:'բաժիններ',sec_t:'Բացեք ցանկացած բաժին',sec_s:'Սեղմեք էջին՝ գիրքը կբացվի հենց այնտեղ։',
-      cmp_k:'համեմատություն',cmp_t:'Ինչու է գիրքը լավը, քան PDF-ը',cmp_s:'Մենյուի երեք ձևաչափ՝ հյուրի աչքերով։',
-      cmp_h1:'Հնարավորություն',cmp_h2:'Թղթե մենյու',cmp_h3:'PDF ֆայլ',cmp_h4:'In Tempo գիրք-մենյու',
-      cmp_r1:'Բացվում է 1 վայրկյանում',cmp_r2:'Թերթվում է ինչպես իսկական գիրք',cmp_r3:'Հարմար է հեռախոսով՝ մեկ ձեռքով',
-      cmp_r4:'Կարդացվում է առանց զումի',cmp_r5:'Թարմանում է առանց վերատպելու',cmp_r6:'Առանց հավելված ներբեռնելու',cmp_r7:'Առանց թղթի և տպելու',
-      book_k:'մենյու',book_t:'Բացեք առաջին էջը',book_s:'Սվայպ, մկնիկ կամ սլաքներ՝ գիրքը կպատասխանի ինչպես թղթե։',book_tip:'Սվայպ կամ սլաքներ ← →',
-      rev_k:'կարծիքներ',rev_t:'Հյուրերը մեր մասին',
-      res_k:'ամրագրում',res_t:'Սեղանը սպասում է',res_s:'Թողեք հայտ՝ կհաստատենք WhatsApp-ով մի քանի րոպեում։',
-      res_name:'Ձեր անունը',res_phone:'Հեռախոս',res_date:'Ամսաթիվ և ժամ',res_guests:'Հյուրեր',
-      res_btn:'Ամրագրել WhatsApp-ով',res_ok:'Հայտը պատրաստ է՝ WhatsApp-ը բացվեց։',
-      faq_k:'հարցեր',faq_t:'Հաճախակի հարցեր',
-      faq_q1:'Պե՞տք է հավելված ներբեռնել։',faq_a1:'Ոչ, մենյուն աշխատում է հենց բրաուզերում։',
-      faq_q2:'Մենյուն թարմանո՞ւմ է։',faq_a2:'Այո, սեզոնային ուտեստները հայտնվում են անմիջապես։',
-      faq_q3:'Աշխատո՞ւմ է առանց ինտերնետի։',faq_a3:'Էջերը քեշավորվում են առաջին բացումից հետո։',
-      faq_q4:'Կարելի՞ է ամրագրել սեղան։',faq_a4:'Այո, վերևի ձևը կուղարկի հայտ WhatsApp։',
-      cta_t:'Ձեր սեղանը <em>սպասում է</em>։',cta_s:'Եկեք քաղցած՝ մնացածը կանի խոհանոցը։',cta_c1:'Զանգել',cta_c2:'Թերթել մենյուն',
-      foot_about:'Իտալական խոհանոց Երևանի սրտում։ Գիրք-մենյու, որը ցանկություն է առաջացնում թերթել։',foot_c:'Կապ',foot_s:'Սոցցանցեր',
-      foot_addr:'Երևան, Աբաբյան 12',foot_hours:'Ամեն օր 11:00–23:00',foot_addr2:'Երևան · Աբաբյան 12'}
-  };
-  function applyLang(lang){
-    const d = DICT[lang] || DICT.ru;
-    document.querySelectorAll('[data-i18n]').forEach(el=>{
-      const k = el.getAttribute('data-i18n'); if (d[k] !== undefined) el.textContent = d[k];
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-      const k = el.getAttribute('data-i18n-html'); if (d[k] !== undefined) el.innerHTML = d[k];
-    });
-    document.documentElement.lang = lang;
-    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-    try{ localStorage.setItem('intempo_lang', lang); }catch(e){}
-  }
-  document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
-  let savedLang='ru'; try{ savedLang = localStorage.getItem('intempo_lang') || 'ru'; }catch(e){}
-  applyLang(savedLang);
-
-  /* ---------- PRELOADER ---------- */
-  window.addEventListener('load', ()=> setTimeout(()=>document.getElementById('loader').classList.add('done'), 700));
-
-  /* ---------- HERO stagger + parallax ---------- */
-  window.addEventListener('load', ()=>document.getElementById('hero').classList.add('ready'));
-  const heroMedia = document.querySelector('.hero-media');
-  let tick=false;
-  addEventListener('scroll', ()=>{ if(tick) return; tick=true;
-    requestAnimationFrame(()=>{ heroMedia.style.transform='translateY('+(scrollY*0.22)+'px)'; tick=false; });
-  }, {passive:true});
-
-  /* ---------- NAV blur ---------- */
-  const nav = document.getElementById('nav');
-  addEventListener('scroll', ()=>nav.classList.toggle('scrolled', scrollY>40), {passive:true});
-
-  /* ---------- BOOK ---------- */
   const TOTAL_PAGES = 52;
   const pad = n => String(n).padStart(2,'0');
+
+  /* КНИГА: закрытая обложка + КЛИК ЛИСТАЕТ */
   const pageFlip = new St.PageFlip(document.getElementById('book'), {
-    width:500, height:750, size:'stretch',
-    minWidth:240, maxWidth:640, minHeight:360, maxHeight:960,
-    maxShadowOpacity:.4, showCover:true, mobileScrollSupport:true,
-    usePortrait:true, autoSize:true, flippingTime:500,
-    disableFlipByClick:true, swipeDistance:20
+    width: 500, height: 750,
+    size: 'stretch',
+    minWidth: 280, maxWidth: 700,
+    minHeight: 420, maxHeight: 1050,
+    showCover: true,          /* старт = закрытая обложка одной страницей */
+    usePortrait: true,
+    mobileScrollSupport: true,
+    autoSize: true,
+    flippingTime: 600,
+    disableFlipByClick: false,/* клик по странице листает */
+    swipeDistance: 20,
+    maxShadowOpacity: 0.5
   });
-  const imgs=[]; for(let i=1;i<=TOTAL_PAGES;i++) imgs.push('page-'+pad(i)+'.jpg');
+
+  const imgs = [];
+  for (let i=1;i<=TOTAL_PAGES;i++) imgs.push('page-'+pad(i)+'.jpg');
   pageFlip.loadFromImages(imgs);
-  const pageNowEl=document.getElementById('pageNow');
-  const prevBtn=document.getElementById('prevBtn');
-  const nextBtn=document.getElementById('nextBtn');
+
+  const pageNowEl = document.getElementById('pageNow');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
   function updateUI(){
-    const idx=pageFlip.getCurrentPageIndex();
-    pageNowEl.textContent=idx+1;
-    prevBtn.disabled = idx===0;
-    nextBtn.disabled = idx>=TOTAL_PAGES-1;
+    const idx = pageFlip.getCurrentPageIndex();
+    pageNowEl.textContent = idx + 1;
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx >= TOTAL_PAGES - 1;
   }
   pageFlip.on('flip', updateUI);
   pageFlip.on('init', updateUI);
-  prevBtn.addEventListener('click', ()=>pageFlip.flipPrev());
-  nextBtn.addEventListener('click', ()=>pageFlip.flipNext());
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowLeft') pageFlip.flipPrev();
-    if(e.key==='ArrowRight') pageFlip.flipNext();
+  prevBtn.addEventListener('click', () => pageFlip.flipPrev());
+  nextBtn.addEventListener('click', () => pageFlip.flipNext());
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') pageFlip.flipPrev();
+    if (e.key === 'ArrowRight') pageFlip.flipNext();
   });
-  /* jump to section pages */
-  document.querySelectorAll('.jump').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const idx = parseInt(btn.dataset.page,10);
+  document.querySelectorAll('.jump').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.page, 10);
       document.getElementById('menu').scrollIntoView({behavior:'smooth'});
-      setTimeout(()=>{ try{ pageFlip.flip(idx); }catch(e){} }, 700);
+      setTimeout(() => { try { pageFlip.flip(idx); } catch(e){} }, 700);
     });
   });
 
-  /* ---------- RESERVE → WhatsApp ---------- */
-  const WA='37400000000';
-  document.getElementById('resForm').addEventListener('submit', e=>{
+  /* hero + nav + reveal */
+  window.addEventListener('load', () => document.getElementById('hero').classList.add('ready'));
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+  }), {threshold:.15});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  /* бронь → WhatsApp */
+  const WA = '37400000000';
+  document.getElementById('resForm').addEventListener('submit', e => {
     e.preventDefault();
-    const f=e.target;
-    if(!f.name.value.trim() || !f.phone.value.trim()){ f.reportValidity ? f.reportValidity() : null; return; }
-    const msg='In Tempo booking: '+f.name.value+', '+f.phone.value+', '+f.date.value+', guests: '+f.guests.value;
-    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg), '_blank');
+    const f = e.target;
+    if (!f.name.value.trim() || !f.phone.value.trim()){ if (f.reportValidity) f.reportValidity(); return; }
+    const msg = 'In Tempo booking: ' + f.name.value + ', ' + f.phone.value + ', ' + f.date.value + ', guests: ' + f.guests.value;
+    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
     document.getElementById('resOk').classList.add('show');
   });
-
-  /* ---------- REVEAL on scroll ---------- */
-  const io=new IntersectionObserver(es=>es.forEach(en=>{
-    if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-  }), {threshold:.15});
-  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
