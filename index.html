@@ -2,541 +2,309 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>In Tempo — Italian Kitchen</title>
-<meta name="description" content="In Tempo. Итальянская кухня. Листайте меню как настоящую книгу.">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In Tempo — Italian Kitchen · Цифровое меню-книга</title>
+<meta name="description" content="In Tempo, Ереван. Итальянская кухня. Меню, которое листают как настоящую книгу.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@500;600;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --tan: #c7a877;
-    --tan-deep: #ad8c5a;
-    --paper: #f6f1e6;
-    --ink: #241c15;
-    --ink-soft: #4a4038;
-    --red: #a63626;
-    --olive: #7f9438;
-    --line: rgba(36,28,21,.15);
-    --glass: rgba(246,241,230,0.85);
-    --glass-dark: rgba(36,28,21,0.08);
+    --bg:#14100c; --bg2:#1d1712; --paper:#f6f1e6; --tan:#c7a877;
+    --tan-deep:#ad8c5a; --red:#a63626; --muted:rgba(246,241,230,.62);
+    --line:rgba(246,241,230,.12); --glass:rgba(29,23,18,.72);
   }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--paper);font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 6vw;}
+  .kicker{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:var(--tan);letter-spacing:.02em;}
+  h1,h2{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;line-height:1.02;}
+  h2{font-size:clamp(32px,5vw,56px);margin:10px 0 18px;}
+  .sub{color:var(--muted);font-size:17px;line-height:1.6;max-width:560px;}
 
-  *{ box-sizing: border-box; }
-  html{ scroll-behavior: smooth; }
-
-  body{
-    margin:0;
-    background: var(--tan);
-    background-image:
-      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(255,255,255,.18), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(255,255,255,.10), transparent 55%);
-    color: var(--ink);
-    font-family: 'Archivo', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a{ color: inherit; }
-
-  /* ---------- HERO VIDEO SECTION (НОВАЯ СЕКЦИЯ) ---------- */
-  .hero-video-container {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .hero-video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    filter: brightness(0.95);
-  }
-  
-  /* Полупрозрачный градиент для лучшей читаемости текста */
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, 
-                rgba(246,241,230,0.15), 
-                rgba(36,28,21,0.05),
-                rgba(246,241,230,0.1));
-    z-index: 0;
-  }
-  
-  /* Анимация текста с эффектом "появления из размытия" */
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 6vw;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .hero-kicker {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  
-  .hero-title {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  
-  .hero-subtitle {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  
-  .hero-actions {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  
-  .hero-content.in-view {
-    .hero-kicker { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
-    .hero-title { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
-    .hero-subtitle { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
-    .hero-actions { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
-  }
-  
   /* ---------- NAV ---------- */
-  header.site{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding: 28px 6vw 0;
-    z-index: 10;
-    transition: background 0.4s ease;
-  }
-  
-  header.site.scrolled {
-    background: rgba(246, 241, 230, 0.95);
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    backdrop-filter: blur(8px);
-  }
-
-  .brandmark{
-    font-family:'Fraunces', serif;
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: .01em;
-  }
-  .brandmark em{
-    font-style: italic;
-    color: var(--red);
-  }
-  .nav-cta{
-    font-size: 14px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border: 1.5px solid var(--ink);
-    border-radius: 999px;
-    text-decoration: none;
-    transition: background .25s ease, color .25s ease;
-    white-space: nowrap;
-  }
-  .nav-cta:hover{ background: var(--ink); color: var(--paper); }
+  .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;
+    padding:18px 6vw;transition:background .35s ease,box-shadow .35s ease,backdrop-filter .35s ease;}
+  .nav.scrolled{background:var(--glass);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:21px;}
+  .logo em{font-style:italic;color:var(--tan);}
+  .nav-cta{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    padding:11px 20px;border:1px solid rgba(246,241,230,.35);border-radius:999px;transition:.3s;}
+  .nav-cta:hover{background:var(--tan);border-color:var(--tan);color:#1a1410;}
 
   /* ---------- HERO ---------- */
-  .hero{
-    padding: 9vh 6vw 6vh;
-    max-width: 900px;
-  }
-  .hero .kicker{
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-size: 19px;
-    color: var(--ink-soft);
-    margin: 0 0 10px;
-  }
-  .hero h1{
-    font-family:'Fraunces', serif;
-    font-weight: 600;
-    font-size: clamp(44px, 8vw, 92px);
-    line-height: .98;
-    margin: 0 0 24px;
-    letter-spacing: -.01em;
-  }
-  .hero p{
-    font-size: 18px;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 0 34px;
-  }
-  .hero-actions{ display:flex; gap: 14px; flex-wrap: wrap; align-items:center; }
-  .btn-primary{
-    display:inline-block;
-    background: var(--ink);
-    color: var(--paper);
-    text-decoration:none;
-    font-weight:600;
-    font-size:15px;
-    padding: 15px 30px;
-    border-radius: 999px;
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
-  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(36,28,21,.28); }
-  .hint{
-    font-size: 14px;
-    color: var(--ink-soft);
-  }
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;
+    background:url('page-01.jpg') center/cover no-repeat;}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(20,16,12,.55),rgba(20,16,12,.15) 40%,rgba(20,16,12,.92) 100%);}
+  .hero-in{position:relative;z-index:2;padding:0 6vw 9vh;width:100%;max-width:1160px;margin:0 auto;}
+  .hero h1{font-size:clamp(42px,7.5vw,88px);margin:14px 0 20px;}
+  .hero h1 em{font-style:italic;color:var(--tan);}
+  .hero .sub{margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:999px;
+    font-weight:600;font-size:15px;transition:transform .25s ease,box-shadow .25s ease,background .25s ease;}
+  .btn-primary{background:var(--tan);color:#1a1410;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(199,168,119,.28);}
+  .btn-ghost{border:1px solid rgba(246,241,230,.35);}
+  .btn-ghost:hover{background:rgba(246,241,230,.08);}
+  /* stagger-появление */
+  .fx{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
+  .hero.ready .fx{opacity:1;transform:none;}
+  .hero.ready .fx:nth-child(2){transition-delay:.15s;}
+  .hero.ready .fx:nth-child(3){transition-delay:.3s;}
+  .hero.ready .fx:nth-child(4){transition-delay:.45s;}
 
-  /* ---------- BOOK SECTION ---------- */
-  .book-section{
-    padding: 2vh 4vw 12vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-  }
+  /* ---------- STATS ---------- */
+  .stats{border-block:1px solid var(--line);background:var(--bg2);}
+  .stats-in{display:grid;grid-template-columns:repeat(4,1fr);}
+  .stat{padding:26px 6vw;text-align:center;border-left:1px solid var(--line);}
+  .stat:first-child{border-left:0;}
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:clamp(24px,3.4vw,40px);color:var(--tan);}
+  .stat span{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
 
-  .book-frame{
-    position: relative;
-    width: 100%;
-    max-width: 640px;
-    aspect-ratio: 2 / 3;
-    display:flex;
-    justify-content:center;
-  }
+  /* ---------- FEATURES ---------- */
+  .sec{padding:clamp(70px,10vw,120px) 0;}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;}
+  .card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:30px 26px;
+    transition:transform .35s ease,border-color .35s ease;}
+  .card:hover{transform:translateY(-6px);border-color:rgba(199,168,119,.5);}
+  .card .ico{width:46px;height:46px;border-radius:12px;background:rgba(199,168,119,.14);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--tan);}
+  .card h3{font-family:'Fraunces',serif;font-size:21px;margin-bottom:10px;}
+  .card p{color:var(--muted);font-size:15px;line-height:1.65;}
 
-  /* torn paper backing, echoing the menu's own motif */
-  .book-frame::before{
-    content:"";
-    position:absolute;
-    inset: -20px -60px;
-    background: var(--paper);
-    border-radius: 6px;
-    box-shadow: 0 30px 60px rgba(36,28,21,.35);
-  }
+  /* ---------- COMPARISON (как на seasats.com/#comparison) ---------- */
+  .cmp-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:44px;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;font-size:15px;}
+  .cmp-table th,.cmp-table td{padding:16px 18px;text-align:center;border-bottom:1px solid var(--line);}
+  .cmp-table th:first-child,.cmp-table td:first-child{text-align:left;color:var(--paper);font-weight:500;}
+  .cmp-table thead th{background:var(--bg2);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .cmp-table td{color:var(--muted);}
+  .cmp-table tr:last-child td{border-bottom:0;}
+  .cmp-table .win{background:rgba(199,168,119,.10);color:var(--paper);}
+  .cmp-table thead .win{background:rgba(199,168,119,.18);color:var(--tan);position:relative;}
+  .yes{color:var(--tan);font-weight:700;}
+  .no{color:rgba(246,241,230,.28);}
+  .cmp-wrap{overflow-x:auto;}
+  .cmp-table{min-width:640px;}
 
-  #book{
-    position: relative;
-    z-index: 1;
-    width: 100% !important;
-    height: 100% !important;
-    touch-action: pan-y;
-  }
-  #book img{
-    width:100%;
-    height:100%;
-    display:block;
-    object-fit: cover;
-    user-select: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-  }
-  .page{
-    background: white;
-  }
+  /* ---------- BOOK ---------- */
+  .book-sec{background:var(--bg2);border-block:1px solid var(--line);}
+  .book-frame{position:relative;width:100%;max-width:640px;aspect-ratio:2/3;margin:44px auto 0;}
+  .book-frame::before{content:"";position:absolute;inset:-18px -46px;background:var(--paper);
+    border-radius:6px;box-shadow:0 30px 60px rgba(0,0,0,.5);}
+  #book{position:relative;z-index:1;width:100% !important;height:100% !important;touch-action:pan-y;}
+  #book img{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  .page{background:#fff;}
+  .book-controls{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:22px;margin-top:36px;}
+  .flip-btn{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:transparent;
+    color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;}
+  .flip-btn:hover{background:var(--tan);color:#1a1410;border-color:var(--tan);transform:scale(1.06);}
+  .flip-btn:disabled{opacity:.3;transform:none;background:transparent;color:var(--paper);}
+  .flip-btn svg{width:20px;height:20px;}
+  .page-counter{font-family:'Fraunces',serif;font-style:italic;min-width:90px;text-align:center;color:var(--tan);}
+  .book-tip{margin-top:14px;text-align:center;font-size:13px;color:var(--muted);}
 
-  .book-controls{
-    position: relative;
-    z-index: 2;
-    display:flex;
-    align-items:center;
-    gap: 22px;
-    margin-top: 34px;
-  }
-  .flip-btn{
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    border: none;
-    background: var(--ink);
-    color: var(--paper);
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition: transform .2s ease, background .2s ease;
-    flex-shrink:0;
-  }
-  .flip-btn:hover{ transform: scale(1.08); background: var(--red); }
-  .flip-btn:disabled{ opacity: .3; cursor:default; transform:none; background: var(--ink); }
-  .flip-btn svg{ width: 20px; height:20px; }
+  /* ---------- CTA + FOOTER ---------- */
+  .cta{ text-align:center;}
+  .cta h2{font-size:clamp(34px,6vw,64px);}
+  .cta h2 em{font-style:italic;color:var(--tan);}
+  .cta .sub{margin:0 auto 30px;}
+  footer{border-top:1px solid var(--line);padding:44px 6vw;color:var(--muted);font-size:14px;}
+  .foot-in{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  footer a:hover{color:var(--paper);}
 
-  .page-counter{
-    font-family:'Fraunces', serif;
-    font-style: italic;
-    font-size: 16px;
-    color: var(--ink);
-    min-width: 90px;
-    text-align:center;
-  }
+  /* reveal on scroll */
+  .rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1);}
+  .rv.in{opacity:1;transform:none;}
 
-  .book-tip{
-    margin-top: 16px;
-    font-size: 13px;
-    color: var(--ink-soft);
-    text-align:center;
+  @media (max-width:860px){
+    .stats-in{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(3){border-left:0;}
+    .stat{border-top:1px solid var(--line);}
+    .stat:nth-child(-n+2){border-top:0;}
+    .cards{grid-template-columns:1fr;}
+    .book-frame::before{inset:-12px -12px;}
   }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    background: var(--ink);
-    color: var(--paper);
-    padding: 60px 6vw 40px;
-  }
-  .footer-grid{
-    display:grid;
-    grid-template-columns: 1.3fr 1fr 1fr;
-    gap: 40px;
-    max-width: 1100px;
-    margin: 0 auto 40px;
-  }
-  footer h3{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    font-style: italic;
-    font-size: 26px;
-    margin: 0 0 14px;
-  }
-  footer p, footer a{
-    color: rgba(246,241,230,.75);
-    font-size: 14.5px;
-    line-height: 1.9;
-    text-decoration: none;
-  }
-  footer a:hover{ color: var(--paper); }
-  .footer-col-title{
-    font-size: 12.5px;
-    color: rgba(246,241,230,.5);
-    margin-bottom: 12px;
-  }
-  .footer-bottom{
-    max-width:1100px;
-    margin: 0 auto;
-    padding-top: 26px;
-    border-top: 1px solid rgba(246,241,230,.15);
-    font-size: 13px;
-    color: rgba(246,241,230,.5);
-  }
-
-  /* ---------- NEW: SUBTLE ANIMATIONS ---------- */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  
-  .fade-in.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .stagger-item {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  
-  .stagger-list.in-view .stagger-item {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  
-  .stagger-list.in-view .stagger-item:nth-child(1) { transition-delay: 0.1s; }
-  .stagger-list.in-view .stagger-item:nth-child(2) { transition-delay: 0.2s; }
-  .stagger-list.in-view .stagger-item:nth-child(3) { transition-delay: 0.3s; }
-  .stagger-list.in-view .stagger-item:nth-child(4) { transition-delay: 0.4s; }
-
-  @media (max-width: 760px){
-    .footer-grid{ grid-template-columns: 1fr; gap: 26px; }
-    .hero{ padding-top: 6vh; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ transition-duration: .01ms !important; animation-duration: .01ms !important; }
-  }
+  @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important;}}
 </style>
 </head>
 <body>
 
-<!-- НОВАЯ HERO СЕКЦИЯ С ВИДЕО -->
-<div class="hero-video-container">
-  <video class="hero-video" autoplay muted loop playsinline>
+<nav class="nav" id="nav">
+  <div class="logo">In <em>Tempo</em></div>
+  <a class="nav-cta" href="#menu">Открыть меню</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <video autoplay muted loop playsinline preload="metadata" poster="page-01.jpg">
     <source src="hero.mp4" type="video/mp4">
-    <!-- Фолбэк на случай, если видео не загрузится -->
-    <img src="page-20.jpg" alt="Spaghetti Amatriciana">
   </video>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="hero-kicker kicker">italian kitchen</p>
-    <h1 class="hero-title">Меню читают,<br>как хорошую книгу.</h1>
-    <p class="hero-subtitle">52 страницы блюд In Tempo — от закусок до дижестива. Переверните страницу пальцем или мышью, будто держите меню в руках.</p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#book">Листать меню →</a>
-      <span class="hint">Работает и с телефона</span>
+  <div class="hero-in">
+    <p class="kicker fx">italian kitchen · Yerevan</p>
+    <h1 class="fx">Меню читают,<br>как <em>хорошую книгу</em>.</h1>
+    <p class="sub fx">52 страницы блюд In Tempo — от закусок до дижестива. Листается пальцем, работает на любом устройстве, открывается за секунду.</p>
+    <div class="hero-actions fx">
+      <a class="btn btn-primary" href="#menu">Листать меню →</a>
+      <a class="btn btn-ghost" href="#comparison">Почему не PDF?</a>
     </div>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-in">
+    <div class="stat rv"><b>52</b><span>страницы меню</span></div>
+    <div class="stat rv"><b>120+</b><span>блюд и напитков</span></div>
+    <div class="stat rv"><b>1 сек</b><span>чтобы открыть</span></div>
+    <div class="stat rv"><b>100%</b><span>работает с телефона</span></div>
   </div>
 </div>
 
-<header class="site">
-  <div class="brandmark">In <em>Tempo</em></div>
-  <a class="nav-cta" href="#book">Открыть меню</a>
-</header>
-
-<section class="book-section" id="book">
-  <div class="book-frame">
-    <div id="book"></div>
+<!-- FEATURES -->
+<section class="sec">
+  <div class="wrap">
+    <p class="kicker rv">цифровое меню</p>
+    <h2 class="rv">Не файл. Не картинка.<br>Настоящая книга.</h2>
+    <div class="cards">
+      <div class="card rv">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4h7a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h8z"/></svg></div>
+        <h3>Листается как бумага</h3>
+        <p>Реалистичный переворот страниц с тенью и изгибом — свайп или стрелки, как удобно.</p>
+      </div>
+      <div class="card rv">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></div>
+        <h3>Открыто с любого устройства</h3>
+        <p>Телефон, планшет, ноутбук — без установки приложений и без регистрации.</p>
+      </div>
+      <div class="card rv">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 13.5"/></svg></div>
+        <h3>Всегда актуально</h3>
+        <p>Сезонное меню, стоп-лист и новые блюда появляются сразу — без перепечатки буклетов.</p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="book-controls">
-    <button class="flip-btn" id="prevBtn" aria-label="Предыдущая страница">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <div class="page-counter"><span id="pageNow">1</span> / <span id="pageTotal">52</span></div>
-    <button class="flip-btn" id="nextBtn" aria-label="Следующая страница">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
+<!-- COMPARISON -->
+<section class="sec" id="comparison" style="padding-top:0;">
+  <div class="wrap">
+    <p class="kicker rv">сравнение</p>
+    <h2 class="rv">Почему книга лучше PDF</h2>
+    <p class="sub rv">Три формата меню глазами гостя — честно и по пунктам.</p>
+    <div class="cmp-wrap rv">
+      <table class="cmp-table">
+        <thead>
+          <tr><th>Возможность</th><th>Бумажное меню</th><th>PDF-файл</th><th class="win">Меню-книга In Tempo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Открыть за 1 секунду</td><td class="no">—</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Листается как настоящая книга</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Удобно с телефона одной рукой</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Читается без зума и прокрутки</td><td class="yes">✓</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Обновляется без перепечатки</td><td class="no">—</td><td class="no">—</td><td class="win yes">✓</td></tr>
+          <tr><td>Работает без установки приложений</td><td class="yes">✓</td><td class="yes">✓</td><td class="win yes">✓</td></tr>
+          <tr><td>Не требует печати и бумаги</td><td class="no">—</td><td class="yes">✓</td><td class="win yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <p class="book-tip">Свайпните страницу или используйте стрелки клавиатуры</p>
+</section>
+
+<!-- BOOK -->
+<section class="sec book-sec" id="menu">
+  <div class="wrap" style="text-align:center;">
+    <p class="kicker rv">меню</p>
+    <h2 class="rv">Откройте первую страницу</h2>
+    <p class="sub rv" style="margin:0 auto;">Свайпните, потяните мышью или нажмите стрелки — книга ответит, как бумажная.</p>
+    <div class="book-frame rv">
+      <div id="book"></div>
+    </div>
+    <div class="book-controls">
+      <button class="flip-btn" id="prevBtn" aria-label="Предыдущая страница">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <div class="page-counter"><span id="pageNow">1</span> / <span id="pageTotal">52</span></div>
+      <button class="flip-btn" id="nextBtn" aria-label="Следующая страница">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+    <p class="book-tip">Свайп или стрелки клавиатуры ← →</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec cta">
+  <div class="wrap">
+    <h2 class="rv">Столик уже <em>ждёт</em>.</h2>
+    <p class="sub rv">Приходите голодными — о остальном позаботится кухня.</p>
+    <div class="hero-actions rv" style="justify-content:center;">
+      <a class="btn btn-primary" href="tel:+374000000">Позвонить в ресторан</a>
+      <a class="btn btn-ghost" href="#menu">Ещё раз листать</a>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <div class="footer-grid">
-    <div class="fade-in">
-      <h3>Заглянуть в гости</h3>
-      <p>Ереван · улица, дом<br>Открыто ежедневно, 11:00–23:00</p>
-    </div>
-    <div class="fade-in">
-      <div class="footer-col-title">Контакты</div>
-      <p>
-        <a href="tel:+374000000">+374 00 000 000</a><br>
-        <a href="mailto:hello@intempo.am">hello@intempo.am</a>
-      </p>
-    </div>
-    <div class="fade-in">
-      <div class="footer-col-title">Соцсети</div>
-      <p class="stagger-list">
-        <span class="stagger-item"><a href="#">Instagram</a></span><br>
-        <span class="stagger-item"><a href="#">Telegram</a></span>
-      </p>
-    </div>
+  <div class="foot-in">
+    <span>© 2026 In Tempo · Italian kitchen · Ереван</span>
+    <span><a href="tel:+374000000">+374 00 000 000</a> · <a href="mailto:hello@intempo.am">hello@intempo.am</a></span>
   </div>
-  <div class="footer-bottom fade-in">© 2026 In Tempo. Italian kitchen.</div>
 </footer>
 
 <script src="page-flip.browser.js"></script>
 <script>
   const TOTAL_PAGES = 52;
-  const pad = n => String(n).padStart(2, '0');
+  const pad = n => String(n).padStart(2,'0');
 
   const pageFlip = new St.PageFlip(document.getElementById('book'), {
-    width: 500,
-    height: 750,
-    size: 'stretch',
-    minWidth: 240,
-    maxWidth: 640,
-    minHeight: 360,
-    maxHeight: 960,
-    maxShadowOpacity: 0.4,
-    showCover: true,
-    mobileScrollSupport: true,
-    usePortrait: true,
-    autoSize: true,
-    flippingTime: 500,
-    disableFlipByClick: true,
-    swipeDistance: 20
+    width:500, height:750, size:'stretch',
+    minWidth:240, maxWidth:640, minHeight:360, maxHeight:960,
+    maxShadowOpacity:.4, showCover:true, mobileScrollSupport:true,
+    usePortrait:true, autoSize:true, flippingTime:500,
+    disableFlipByClick:true, swipeDistance:20
   });
 
   const imgs = [];
-  for (let i = 1; i <= TOTAL_PAGES; i++){
-    imgs.push(`page-${pad(i)}.jpg`);
-  }
-
+  for (let i=1;i<=TOTAL_PAGES;i++) imgs.push(`page-${pad(i)}.jpg`);
   pageFlip.loadFromImages(imgs);
 
   const pageNowEl = document.getElementById('pageNow');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-
   function updateUI(){
     const idx = pageFlip.getCurrentPageIndex();
     pageNowEl.textContent = idx + 1;
     prevBtn.disabled = idx === 0;
     nextBtn.disabled = idx >= TOTAL_PAGES - 1;
   }
-
   pageFlip.on('flip', updateUI);
   pageFlip.on('init', updateUI);
-
   prevBtn.addEventListener('click', () => pageFlip.flipPrev());
   nextBtn.addEventListener('click', () => pageFlip.flipNext());
-
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft') pageFlip.flipPrev();
     if (e.key === 'ArrowRight') pageFlip.flipNext();
   });
-  
-  // ===== АНИМАЦИИ =====
-  document.addEventListener('DOMContentLoaded', () => {
-    // Анимация hero текста
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-      setTimeout(() => {
-        heroContent.classList.add('in-view');
-      }, 300);
-    }
-    
-    // Плавное появление при скролле
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    // Наблюдаем за элементами с классом fade-in
-    document.querySelectorAll('.fade-in, .stagger-list').forEach(el => {
-      observer.observe(el);
-    });
-    
-    // Плавное изменение шапки при скролле
-    const header = document.querySelector('header.site');
-    let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', () => {
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      if (scrollTop > lastScrollTop && scrollTop > 100) {
-        // Скроллим вниз
-        header.style.transform = 'translateY(-100%)';
-      } else {
-        // Скроллим вверх
-        header.style.transform = 'translateY(0)';
-      }
-      
-      if (scrollTop > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-      
-      lastScrollTop = scrollTop;
-    });
-  });
-</script>
 
+  /* hero stagger */
+  window.addEventListener('load', () => document.getElementById('hero').classList.add('ready'));
+
+  /* nav blur */
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  /* reveal on scroll */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.15});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
 </body>
 </html>
