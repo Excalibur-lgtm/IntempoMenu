@@ -24,13 +24,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#b79d74; --bg-deep:#a68c62; --menupage:#c9b28c; --paper:#f1efe9;
+    --bg:#b79d74; --bg-deep:#a68c62; --menupage:#c9b18a; --paper:#f1efe9;
     --ink:#2b2622; --muted:rgba(43,38,34,.66); --line:rgba(43,38,34,.16); --red:#d8432a;
     --serif:'Noto Serif',Georgia,serif;
     --sans:'Noto Sans',-apple-system,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-padding-top:110px;}
   body{background:var(--bg);background-image:radial-gradient(ellipse 900px 500px at 15% -10%,rgba(255,255,255,.16),transparent 60%);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   a{color:inherit;text-decoration:none;} img{display:block;max-width:100%;}
   ::selection{background:var(--red);color:#fff;}
@@ -39,10 +39,10 @@
   h1,h2{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em;color:var(--ink);}
   em{font-style:italic;color:var(--red);}
 
-  /* ---------- ЛОГО: без белой подложки, "впечатан" в фон меню ---------- */
+  /* ---------- ЛОГО: карточка цвета #c9b18a, белая бумага растворяется ---------- */
   .logo-sprite{width:240px;height:130px;background:url('page-01.jpg') no-repeat;background-size:1000px auto;background-position:-390px -1210px;mix-blend-mode:multiply;}
   .logo-sprite--sm{width:132px;height:72px;background-size:550px auto;background-position:-215px -666px;}
-  .logo-card{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:transparent;padding:4px 10px;border-radius:12px;}
+  .logo-card{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--menupage);padding:6px 14px 6px;border-radius:12px;}
   .slogan{font-family:var(--serif);font-style:italic;font-size:11px;letter-spacing:.14em;color:var(--muted);}
 
   /* ---------- LOADER ---------- */
@@ -54,7 +54,7 @@
 
   /* ---------- NAV ---------- */
   .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 6vw;transition:.4s;}
-  .nav.scrolled{background:rgba(201,178,140,.94);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);}
+  .nav.scrolled{background:rgba(201,177,138,.94);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);}
   .nav .logo-card{opacity:0;transform:translateY(-16px) scale(.94);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);}
   .nav.ready .logo-card{opacity:1;transform:none;}
   .nav .nav-right{opacity:0;transform:translateY(-10px);transition:opacity .8s ease .2s,transform .8s cubic-bezier(.22,1,.36,1) .2s;}
@@ -103,25 +103,25 @@
   .scroll-cue i{width:1px;height:40px;background:var(--paper);animation:cue 2s ease-in-out infinite;}
   @keyframes cue{0%,100%{transform:scaleY(.35);opacity:.5;}50%{transform:scaleY(1);opacity:1;}}
 
-  /* ---------- ЛЕНТА (беж меню) ---------- */
+  /* ---------- ЛЕНТА ---------- */
   .marquee{border-block:1px solid var(--line);background:var(--menupage);overflow:hidden;padding:14px 0;}
   .mq-track{display:flex;width:max-content;animation:mq 34s linear infinite;}
   .mq-track span{font-family:var(--serif);font-style:italic;font-size:16px;letter-spacing:.14em;color:var(--muted);white-space:nowrap;padding:0 24px;}
   .mq-track b{color:var(--red);font-weight:500;}
   @keyframes mq{to{transform:translateX(-50%);}}
 
-  /* ---------- КНИГА (десктоп НЕ тронут; страницы в цвете меню) ---------- */
+  /* ---------- КНИГА: точная пропорция разворота, без белых полос и растяжения ---------- */
   .menu-sec{padding:clamp(70px,9vw,110px) 0 clamp(70px,9vw,120px);text-align:center;}
   .jump-row{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:0 auto clamp(30px,4vw,48px);padding:0 4vw;}
   .jump{font:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:none;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.3s;}
   .jump:hover{color:var(--menupage);background:var(--ink);border-color:var(--ink);}
   .book-stage{perspective:1400px;margin:0 auto;}
-  .book-frame{position:relative;width:min(97vw,1400px);aspect-ratio:2/3;margin:0 auto;opacity:0;transform:translateY(70px) rotateX(10deg);transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.22,1,.36,1);}
-  .book-frame.is-landscape{aspect-ratio:4/3;}
+  /* Десктоп: разворот = ровно 4:3, вписан в ширину И в высоту экрана */
+  .book-frame{position:relative;width:min(97vw,1400px,106vh);aspect-ratio:4/3;margin:0 auto;opacity:0;transform:translateY(70px) rotateX(10deg);transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.22,1,.36,1);}
   .book-frame.in{opacity:1;transform:translateY(0) rotateX(0);}
   .book-frame::before{content:"";position:absolute;inset:0;background:transparent;box-shadow:0 40px 90px rgba(43,38,34,.4);border-radius:4px;}
   #book{position:relative;z-index:1;width:100% !important;height:100% !important;touch-action:pan-y;cursor:pointer;background:var(--menupage);}
-  #book img{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  #book img{user-select:none;-webkit-user-drag:none;pointer-events:none;}
   .page{background:var(--menupage);}
   .book-controls{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:22px;margin-top:42px;}
   .flip-btn{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;}
@@ -129,7 +129,7 @@
   .flip-btn:disabled{opacity:.3;transform:none;background:transparent;color:var(--ink);}
   .flip-btn svg{width:20px;height:20px;}
 
-  /* ---------- КОНТАКТЫ (беж меню) ---------- */
+  /* ---------- КОНТАКТЫ ---------- */
   .contact-sec{padding:clamp(80px,11vw,140px) 0;text-align:center;background:var(--menupage);border-top:1px solid var(--line);}
   .contact-sec .kicker{color:var(--red);text-shadow:none;font-size:15px;}
   .contact-sec h2{font-size:clamp(30px,5vw,58px);margin:14px 0 12px;}
@@ -149,15 +149,17 @@
   .rv{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1);}
   .rv.in{opacity:1;transform:none;}
 
-  /* ---------- МОБИЛЬНАЯ: книга ВО ВСЮ ШИРИНУ ---------- */
+  /* ---------- МОБИЛЬНАЯ: книга во всю ширину, не прячется под шапку ---------- */
   @media (max-width:900px){
     .nav{padding:12px 4vw;}
     .nav-right{gap:10px;}
   }
   @media (max-width:768px){
-    .book-frame{width:100%;}
+    /* Портрет: одна страница 2:3 во всю ширину */
+    .book-frame{width:100%;aspect-ratio:2/3;}
     .nav-link{display:none;}
     .logo-sprite--sm{width:108px;height:59px;background-size:450px auto;background-position:-176px -545px;}
+    .menu-sec{padding-top:84px;}
   }
   @media (max-width:640px){
     .nav{padding:10px 4vw;}
@@ -173,10 +175,9 @@
     .hero-actions{flex-direction:column;width:100%;max-width:340px;margin:26px auto 0;}
     .btn{width:100%;justify-content:center;padding:15px 24px;}
     .mq-track span{font-size:14px;padding:0 16px;}
-    .menu-sec{padding:44px 0 60px;}
+    .menu-sec{padding:72px 0 60px;}
     .jump-row{gap:8px;margin-bottom:22px;padding:0 3vw;}
     .jump{font-size:11px;padding:8px 13px;}
-    .book-frame{width:100%;}
     .book-controls{gap:16px;margin-top:24px;}
     .flip-btn{width:48px;height:48px;}
     .flip-btn svg{width:18px;height:18px;}
@@ -360,7 +361,7 @@
   const nav = document.getElementById('nav');
   addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
 
-  /* ---------- КНИГА (десктоп без изменений) ---------- */
+  /* ---------- КНИГА ---------- */
   const TOTAL_PAGES = 52;
   const pad = n => String(n).padStart(2,'0');
   const pageFlip = new St.PageFlip(document.getElementById('book'), {
@@ -382,16 +383,6 @@
   pageFlip.loadFromImages(imgs);
 
   const bookFrame = document.getElementById('bookFrame');
-  function syncFrame(){
-    try{
-      const o = String(pageFlip.getOrientation()).toLowerCase();
-      bookFrame.classList.toggle('is-landscape', o.indexOf('land') !== -1);
-    }catch(e){}
-  }
-  pageFlip.on('init', () => { syncFrame(); updateUI(); });
-  let rzT;
-  addEventListener('resize', () => { clearTimeout(rzT); rzT = setTimeout(syncFrame, 250); }, {passive:true});
-
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   function updateUI(){
@@ -400,6 +391,7 @@
     nextBtn.disabled = idx >= TOTAL_PAGES - 1;
   }
   pageFlip.on('flip', updateUI);
+  pageFlip.on('init', updateUI);
   prevBtn.addEventListener('click', () => pageFlip.flipPrev());
   nextBtn.addEventListener('click', () => pageFlip.flipNext());
   document.addEventListener('keydown', e => {
