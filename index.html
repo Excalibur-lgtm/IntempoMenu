@@ -25,7 +25,7 @@
   h1,h2{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em;color:var(--ink);}
   em{font-style:italic;color:var(--red);}
 
-  /* ---------- ЛОГО: окно сдвинуто левее/выше, чтобы сам лого сел правее и ниже ---------- */
+  /* ---------- ЛОГО ---------- */
   .logo-sprite{width:240px;height:140px;background:url('page-01.jpg') no-repeat;background-size:1000px auto;background-position:-390px -1210px;}
   .logo-sprite--sm{width:132px;height:77px;background-size:550px auto;background-position:-215px -666px;}
   .logo-card{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--paper);padding:8px 16px 6px;border-radius:12px;box-shadow:0 6px 18px rgba(43,38,34,.18);}
@@ -40,7 +40,7 @@
   /* ---------- NAV ---------- */
   .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 6vw;transition:.4s;}
   .nav.scrolled{background:rgba(241,239,233,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);}
-  .nav-right{display:flex;align-items:center;gap:16px;}
+  .nav-right{display:flex;align-items:center;gap:14px;}
   .nav-link{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,239,233,.92);text-shadow:0 1px 6px rgba(43,38,34,.55);transition:.3s;}
   .nav-link:hover{color:#fff;}
   .nav.scrolled .nav-link{color:var(--muted);text-shadow:none;}
@@ -50,6 +50,12 @@
   .lang-btn.active{background:var(--paper);color:var(--ink);text-shadow:none;}
   .nav.scrolled .lang-btn{border-color:var(--line);color:var(--muted);text-shadow:none;}
   .nav.scrolled .lang-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  /* Иконка Instagram в шапке */
+  .nav-soc{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(241,239,233,.75);display:inline-flex;align-items:center;justify-content:center;color:var(--paper);text-shadow:none;transition:.25s;flex-shrink:0;}
+  .nav-soc:hover{background:var(--paper);color:var(--ink);}
+  .nav.scrolled .nav-soc{border-color:var(--line);color:var(--ink);}
+  .nav.scrolled .nav-soc:hover{background:var(--ink);color:var(--paper);}
+  .nav-soc svg{width:17px;height:17px;}
   .nav-tel{font-size:13px;font-weight:600;letter-spacing:.06em;padding:10px 20px;border:1.5px solid rgba(241,239,233,.85);border-radius:999px;color:var(--paper);text-shadow:0 1px 6px rgba(43,38,34,.55);transition:.3s;white-space:nowrap;}
   .nav-tel:hover{background:var(--paper);color:var(--ink);text-shadow:none;}
   .nav.scrolled .nav-tel{border-color:var(--ink);color:var(--ink);text-shadow:none;}
@@ -104,8 +110,7 @@
   .flip-btn:disabled{opacity:.3;transform:none;background:transparent;color:var(--ink);}
   .flip-btn svg{width:20px;height:20px;}
   .page-counter{font-family:var(--serif);font-style:italic;min-width:90px;text-align:center;color:var(--ink);}
-  .book-tip{margin-top:16px;font-size:13px;color:var(--muted);}
-  .jump-row{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .jump-row{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:30px;}
   .jump{font:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:none;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.3s;}
   .jump:hover{color:var(--paper);background:var(--ink);border-color:var(--ink);}
 
@@ -118,7 +123,6 @@
   .phone{font-family:var(--serif);font-size:clamp(30px,5.6vw,58px);line-height:1.15;color:var(--ink);transition:.3s;}
   .phone:hover{color:var(--red);}
   .addr{margin-top:26px;color:var(--muted);font-size:14px;line-height:2;letter-spacing:.06em;}
-  /* Соц-иконки */
   .soc-row{display:flex;gap:12px;justify-content:center;margin-top:28px;}
   .soc{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);display:inline-flex;align-items:center;justify-content:center;color:var(--ink);transition:.25s;}
   .soc:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px);box-shadow:0 10px 22px rgba(43,38,34,.25);}
@@ -143,6 +147,8 @@
   @media (max-width:640px){
     .nav{padding:10px 4vw;}
     .nav-tel{padding:8px 14px;font-size:12px;}
+    .nav-soc{width:34px;height:34px;}
+    .nav-soc svg{width:15px;height:15px;}
     .lang-btn{padding:6px 9px;font-size:10px;}
     .logo-card{padding:6px 12px 5px;}
     .logo-sprite--sm{width:96px;height:56px;background-size:400px auto;background-position:-156px -484px;}
@@ -159,7 +165,6 @@
     .flip-btn{width:46px;height:46px;}
     .flip-btn svg{width:17px;height:17px;}
     .page-counter{min-width:70px;font-size:14px;}
-    .book-tip{font-size:12px;padding:0 6vw;}
     .jump{font-size:11px;padding:8px 13px;}
     .contact-sec{padding:64px 0;}
     .contact-sub{font-size:14px;padding:0 6vw;}
@@ -195,6 +200,9 @@
       <button class="lang-btn" data-lang="en">EN</button>
       <button class="lang-btn" data-lang="ru">RU</button>
     </div>
+    <a class="nav-soc" href="https://www.instagram.com/intempo_italian_restaurant?stkn=dmNidWlnbmxpbm12" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+    </a>
     <a class="nav-tel" href="tel:+37477966933">+374 77 966 933</a>
   </div>
 </nav>
@@ -244,14 +252,16 @@
     <div class="page-counter"><span id="pageNow">1</span> / <span id="pageTotal">52</span></div>
     <button class="flip-btn" id="nextBtn" aria-label="Հաջորդ էջ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
   </div>
-  <p class="book-tip" data-i18n="m_tip">Հեռախոսում գիրքը փակ է — սեղմեք շապիկին՝ բացելու համար</p>
 
   <div class="jump-row rv">
     <button class="jump" data-page="4" data-i18n="j1">Նախուտեստներ</button>
-    <button class="jump" data-page="18" data-i18n="j2">Պաստա</button>
-    <button class="jump" data-page="22" data-i18n="j3">Պիցցա</button>
-    <button class="jump" data-page="36" data-i18n="j4">Գինի</button>
-    <button class="jump" data-page="44" data-i18n="j5">Աղանդեր</button>
+    <button class="jump" data-page="8" data-i18n="j2">Սալատներ</button>
+    <button class="jump" data-page="12" data-i18n="j3">Ապուրներ</button>
+    <button class="jump" data-page="18" data-i18n="j4">Պաստա</button>
+    <button class="jump" data-page="23" data-i18n="j5">Բուրգերներ և սենդվիչներ</button>
+    <button class="jump" data-page="27" data-i18n="j6">Պիադինա</button>
+    <button class="jump" data-page="31" data-i18n="j7">Հիմնական ուտեստներ</button>
+    <button class="jump" data-page="44" data-i18n="j8">Աղանդեր</button>
   </div>
 </section>
 
@@ -266,9 +276,6 @@
   <div class="soc-row rv">
     <a class="soc" href="https://www.instagram.com/intempo_italian_restaurant?stkn=dmNidWlnbmxpbm12" target="_blank" rel="noopener" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
-    </a>
-    <a class="soc" href="#top" aria-label="Telegram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
     </a>
   </div>
 </section>
@@ -292,8 +299,8 @@
       hero_b1:'Բացել մենյուն →',hero_b2:'Ամրագրել սեղան',cue:'թերթեք',
       m_kick:'մենյու · 52 էջ',m_h2:'Թերթեք, ինչպես <em>ռեստորանում</em>',
       m_sub:'Սեղմեք էջին, սվայփ կամ սլաքներ ← → — գիրքը պատասխանում է ինչպես թղթե։',
-      m_tip:'Հեռախոսում գիրքը փակ է — սեղմեք շապիկին՝ բացելու համար',
-      j1:'Նախուտեստներ',j2:'Պաստա',j3:'Պիցցա',j4:'Գինի',j5:'Աղանդեր',
+      j1:'Նախուտեստներ',j2:'Սալատներ',j3:'Ապուրներ',j4:'Պաստա',
+      j5:'Բուրգերներ և սենդվիչներ',j6:'Պիադինա',j7:'Հիմնական ուտեստներ',j8:'Աղանդեր',
       c_kick:'սեղանի ամրագրում',c_h2:'Զանգեք — և սեղանը <em>սպասում է</em>',
       c_sub:'Մեկ հպում — և մնացածը մենք կհոգանք։',
       c_addr1:'Երևան, Հյուսիսային 10/3',c_addr2:'Ամեն օր 09:00 – 24:00',
@@ -303,8 +310,8 @@
       hero_b1:'Open the menu →',hero_b2:'Book a table',cue:'scroll',
       m_kick:'menu · 52 pages',m_h2:'Flip it like <em>at the restaurant</em>',
       m_sub:'Click a page, swipe or use ← → arrows — the book responds like paper.',
-      m_tip:'On phone the book is closed — tap the cover to open',
-      j1:'Starters',j2:'Pasta',j3:'Pizza',j4:'Wine',j5:'Desserts',
+      j1:'Starters',j2:'Salads',j3:'Soups',j4:'Pasta',
+      j5:'Burgers & Sandwiches',j6:'Piadina',j7:'Main Courses',j8:'Desserts',
       c_kick:'table reservation',c_h2:'Call us — and the table <em>is waiting</em>',
       c_sub:'One tap — and we will take care of the rest.',
       c_addr1:'Yerevan, 10/3 Northern Avenue',c_addr2:'Daily 09:00 – 24:00',
@@ -314,8 +321,8 @@
       hero_b1:'Открыть меню →',hero_b2:'Забронировать стол',cue:'листайте',
       m_kick:'меню · 52 страницы',m_h2:'Листайте, как <em>в ресторане</em>',
       m_sub:'Клик по странице, свайп или стрелки ← → — книга отвечает как бумажная.',
-      m_tip:'На телефоне книга закрыта — нажмите на обложку, чтобы открыть',
-      j1:'Закуски',j2:'Паста',j3:'Пицца',j4:'Вино',j5:'Десерты',
+      j1:'Закуски',j2:'Салаты',j3:'Супы',j4:'Паста',
+      j5:'Бургеры и сэндвичи',j6:'Пьядина',j7:'Основные блюда',j8:'Десерты',
       c_kick:'бронь стола',c_h2:'Позвоните — и столик <em>ждёт</em>',
       c_sub:'Одно касание — и мы позаботимся обо всём остальном.',
       c_addr1:'Ереван, Северный проспект 10/3',c_addr2:'Ежедневно 09:00 – 24:00',
