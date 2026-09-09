@@ -25,9 +25,9 @@
   h1,h2{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em;color:var(--ink);}
   em{font-style:italic;color:var(--red);}
 
-  /* ---------- ЛОГО: окно с запасом по белой бумаге — видно целиком ---------- */
-  .logo-sprite{width:240px;height:140px;background:url('page-01.jpg') no-repeat;background-size:1000px auto;background-position:-400px -1215px;}
-  .logo-sprite--sm{width:132px;height:77px;background-size:550px auto;background-position:-220px -668px;}
+  /* ---------- ЛОГО: окно сдвинуто левее/выше, чтобы сам лого сел правее и ниже ---------- */
+  .logo-sprite{width:240px;height:140px;background:url('page-01.jpg') no-repeat;background-size:1000px auto;background-position:-390px -1210px;}
+  .logo-sprite--sm{width:132px;height:77px;background-size:550px auto;background-position:-215px -666px;}
   .logo-card{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--paper);padding:8px 16px 6px;border-radius:12px;box-shadow:0 6px 18px rgba(43,38,34,.18);}
   .slogan{font-family:var(--serif);font-style:italic;font-size:11px;letter-spacing:.14em;color:var(--muted);}
 
@@ -37,7 +37,7 @@
   #loader .logo-sprite{animation:pulse 1.6s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
 
-  /* ---------- NAV + 3 ЯЗЫКА ---------- */
+  /* ---------- NAV ---------- */
   .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 6vw;transition:.4s;}
   .nav.scrolled{background:rgba(241,239,233,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);}
   .nav-right{display:flex;align-items:center;gap:16px;}
@@ -117,20 +117,60 @@
   .phones{margin:clamp(36px,5vw,56px) 0 10px;display:flex;flex-direction:column;gap:10px;align-items:center;}
   .phone{font-family:var(--serif);font-size:clamp(30px,5.6vw,58px);line-height:1.15;color:var(--ink);transition:.3s;}
   .phone:hover{color:var(--red);}
-  .wa-btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:16px 34px;border-radius:999px;background:var(--ink);color:var(--paper);font-weight:600;font-size:15px;transition:.25s;}
-  .wa-btn:hover{transform:translateY(-2px);background:var(--red);box-shadow:0 14px 30px rgba(216,67,42,.3);}
-  .addr{margin-top:30px;color:var(--muted);font-size:14px;line-height:2;letter-spacing:.06em;}
+  .addr{margin-top:26px;color:var(--muted);font-size:14px;line-height:2;letter-spacing:.06em;}
+  /* Соц-иконки */
+  .soc-row{display:flex;gap:12px;justify-content:center;margin-top:28px;}
+  .soc{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);display:inline-flex;align-items:center;justify-content:center;color:var(--ink);transition:.25s;}
+  .soc:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px);box-shadow:0 10px 22px rgba(43,38,34,.25);}
+  .soc svg{width:21px;height:21px;}
 
   footer{border-top:1px solid var(--line);background:var(--paper);padding:40px 6vw 30px;display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--muted);font-size:13px;text-align:center;}
-  footer a:hover{color:var(--ink);}
   .foot-line{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
 
   .rv{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1);}
   .rv.in{opacity:1;transform:none;}
+
+  /* ---------- МОБИЛЬНАЯ ОПТИМИЗАЦИЯ ---------- */
+  @media (max-width:900px){
+    .nav{padding:12px 4vw;}
+    .nav-right{gap:10px;}
+  }
   @media (max-width:768px){
     .book-frame{width:min(94vw,640px);aspect-ratio:2/3;}
     .nav-link{display:none;}
-    .logo-sprite--sm{width:108px;height:63px;background-size:450px auto;background-position:-180px -547px;}
+    .logo-sprite--sm{width:108px;height:63px;background-size:450px auto;background-position:-176px -545px;}
+  }
+  @media (max-width:640px){
+    .nav{padding:10px 4vw;}
+    .nav-tel{padding:8px 14px;font-size:12px;}
+    .lang-btn{padding:6px 9px;font-size:10px;}
+    .logo-card{padding:6px 12px 5px;}
+    .logo-sprite--sm{width:96px;height:56px;background-size:400px auto;background-position:-156px -484px;}
+    .slogan{font-size:10px;}
+    .hero-in{padding:0 5vw;}
+    .hero h1{font-size:clamp(30px,9vw,44px);}
+    .hero-sub{font-size:15px;margin-top:18px;}
+    .hero-actions{flex-direction:column;width:100%;max-width:340px;margin:26px auto 0;}
+    .btn{width:100%;justify-content:center;padding:15px 24px;}
+    .mq-track span{font-size:14px;padding:0 16px;}
+    .menu-sec{padding:56px 0;}
+    .menu-sub{font-size:14px;padding:0 4vw;}
+    .book-controls{gap:14px;margin-top:28px;}
+    .flip-btn{width:46px;height:46px;}
+    .flip-btn svg{width:17px;height:17px;}
+    .page-counter{min-width:70px;font-size:14px;}
+    .book-tip{font-size:12px;padding:0 6vw;}
+    .jump{font-size:11px;padding:8px 13px;}
+    .contact-sec{padding:64px 0;}
+    .contact-sub{font-size:14px;padding:0 6vw;}
+    .phone{font-size:clamp(26px,8vw,40px);}
+    .addr{font-size:13px;line-height:1.9;}
+    .soc{width:44px;height:44px;}
+    footer{padding:32px 5vw 24px;}
+  }
+  @media (max-width:380px){
+    .nav-tel{display:none;}
+    .lang-btn{padding:5px 8px;font-size:9px;}
   }
   @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important;}}
 </style>
@@ -155,7 +195,7 @@
       <button class="lang-btn" data-lang="en">EN</button>
       <button class="lang-btn" data-lang="ru">RU</button>
     </div>
-    <a class="nav-tel" href="tel:+37400000000">+374 00 000 000</a>
+    <a class="nav-tel" href="tel:+37477966933">+374 77 966 933</a>
   </div>
 </nav>
 
@@ -168,7 +208,7 @@
   <div class="hero-in">
     <h1>
       <span class="line"><span class="line-in" data-i18n-html="hero_l1">Իտալական խոհանոց</span></span>
-      <span class="line"><span class="line-in" data-i18n-html="hero_l2">Երևանի <em>կենտրոնում</em></span></span>
+      <span class="line"><span class="line-in" data-i18n-html="hero_l2">Երևանի <em>Կենտրոնում</em></span></span>
     </h1>
     <p class="hero-sub" data-i18n="hero_sub">Բաց է 09:00–24:00</p>
     <div class="hero-actions">
@@ -220,11 +260,17 @@
   <h2 class="rv" data-i18n-html="c_h2">Զանգեք — և սեղանը <em>սպասում է</em></h2>
   <p class="contact-sub rv" data-i18n="c_sub">Մեկ հպում — և մնացածը մենք կհոգանք։</p>
   <div class="phones rv">
-    <a class="phone" href="tel:+37400000000">+374 00 000 000</a>
-    <a class="phone" href="tel:+37400000001">+374 00 000 001</a>
+    <a class="phone" href="tel:+37477966933">+374 77 966 933</a>
   </div>
-  <a class="wa-btn rv" href="https://wa.me/37400000000" target="_blank" rel="noopener" data-i18n="c_wa">Գրել WhatsApp-ով</a>
-  <p class="addr rv"><span data-i18n="c_addr1">Երևան, Աբաբյան 12</span><br><span data-i18n="c_addr2">Ամեն օր 09:00 – 24:00</span></p>
+  <p class="addr rv"><span data-i18n="c_addr1">Երևան, Հյուսիսային 10/3</span><br><span data-i18n="c_addr2">Ամեն օր 09:00 – 24:00</span></p>
+  <div class="soc-row rv">
+    <a class="soc" href="https://www.instagram.com/intempo_italian_restaurant?stkn=dmNidWlnbmxpbm12" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+    </a>
+    <a class="soc" href="#top" aria-label="Telegram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+    </a>
+  </div>
 </section>
 
 <footer>
@@ -234,7 +280,6 @@
   </div>
   <div class="foot-line">
     <span data-i18n="f_line">© 2026 In Tempo · Իտալական խոհանոց</span>
-    <span><a href="#">Instagram</a> · <a href="#">Telegram</a></span>
   </div>
 </footer>
 
@@ -243,15 +288,15 @@
   /* ---------- 3 ЯЗЫКА: HY (основной) / EN / RU ---------- */
   const DICT = {
     hy:{title:'In Tempo — Իտալական խոհանոց · Երևան',nav_menu:'Մենյու',nav_contact:'Կապ',
-      hero_l1:'Իտալական խոհանոց',hero_l2:'Երևանի <em>կենտրոնում</em>',hero_sub:'Բաց է 09:00–24:00',
+      hero_l1:'Իտալական խոհանոց',hero_l2:'Երևանի <em>Կենտրոնում</em>',hero_sub:'Բաց է 09:00–24:00',
       hero_b1:'Բացել մենյուն →',hero_b2:'Ամրագրել սեղան',cue:'թերթեք',
       m_kick:'մենյու · 52 էջ',m_h2:'Թերթեք, ինչպես <em>ռեստորանում</em>',
       m_sub:'Սեղմեք էջին, սվայփ կամ սլաքներ ← → — գիրքը պատասխանում է ինչպես թղթե։',
       m_tip:'Հեռախոսում գիրքը փակ է — սեղմեք շապիկին՝ բացելու համար',
       j1:'Նախուտեստներ',j2:'Պաստա',j3:'Պիցցա',j4:'Գինի',j5:'Աղանդեր',
       c_kick:'սեղանի ամրագրում',c_h2:'Զանգեք — և սեղանը <em>սպասում է</em>',
-      c_sub:'Մեկ հպում — և մնացածը մենք կհոգանք։',c_wa:'Գրել WhatsApp-ով',
-      c_addr1:'Երևան, Աբաբյան 12',c_addr2:'Ամեն օր 09:00 – 24:00',
+      c_sub:'Մեկ հպում — և մնացածը մենք կհոգանք։',
+      c_addr1:'Երևան, Հյուսիսային 10/3',c_addr2:'Ամեն օր 09:00 – 24:00',
       f_line:'© 2026 In Tempo · Իտալական խոհանոց'},
     en:{title:'In Tempo — Italian Kitchen · Yerevan',nav_menu:'Menu',nav_contact:'Contact',
       hero_l1:'Italian kitchen',hero_l2:'in the heart of <em>Yerevan</em>',hero_sub:'Open 09:00 – 24:00',
@@ -261,8 +306,8 @@
       m_tip:'On phone the book is closed — tap the cover to open',
       j1:'Starters',j2:'Pasta',j3:'Pizza',j4:'Wine',j5:'Desserts',
       c_kick:'table reservation',c_h2:'Call us — and the table <em>is waiting</em>',
-      c_sub:'One tap — and we will take care of the rest.',c_wa:'Message on WhatsApp',
-      c_addr1:'Yerevan, Ababyan 12',c_addr2:'Daily 09:00 – 24:00',
+      c_sub:'One tap — and we will take care of the rest.',
+      c_addr1:'Yerevan, 10/3 Northern Avenue',c_addr2:'Daily 09:00 – 24:00',
       f_line:'© 2026 In Tempo · Italian kitchen'},
     ru:{title:'In Tempo — Итальянская кухня · Ереван',nav_menu:'Меню',nav_contact:'Контакты',
       hero_l1:'Итальянская кухня',hero_l2:'в центре <em>Еревана</em>',hero_sub:'Открыта с 09:00 до 24:00',
@@ -272,8 +317,8 @@
       m_tip:'На телефоне книга закрыта — нажмите на обложку, чтобы открыть',
       j1:'Закуски',j2:'Паста',j3:'Пицца',j4:'Вино',j5:'Десерты',
       c_kick:'бронь стола',c_h2:'Позвоните — и столик <em>ждёт</em>',
-      c_sub:'Одно касание — и мы позаботимся обо всём остальном.',c_wa:'Написать в WhatsApp',
-      c_addr1:'Ереван, улица Абабяна 12',c_addr2:'Ежедневно 09:00 – 24:00',
+      c_sub:'Одно касание — и мы позаботимся обо всём остальном.',
+      c_addr1:'Ереван, Северный проспект 10/3',c_addr2:'Ежедневно 09:00 – 24:00',
       f_line:'© 2026 In Tempo · Итальянская кухня'}
   };
   function applyLang(lang){
