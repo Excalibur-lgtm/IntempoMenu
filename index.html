@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
+э<!DOCTYPE html>
+<html lang="hy">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>In Tempo — Italian Kitchen · Ереван</title>
-<meta name="description" content="In Tempo — итальянская кухня в центре Еревана. Открыта с 09:00 до 24:00. Time to enjoy.">
+<title>In Tempo — Իտալական խոհանոց · Երևան</title>
+<meta name="description" content="In Tempo — իտալական խոհանոց Երևանի կենտրոնում։ Բաց է 09:00–24:00։ Time to enjoy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600&family=Noto+Serif+Armenian:wght@500;600&family=Noto+Sans+Armenian:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#b79d74; --bg-deep:#a68c62; --paper:#f1efe9;
@@ -15,15 +15,15 @@
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);background-image:radial-gradient(ellipse 900px 500px at 15% -10%,rgba(255,255,255,.16),transparent 60%);color:var(--ink);font-family:'Archivo',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body{background:var(--bg);background-image:radial-gradient(ellipse 900px 500px at 15% -10%,rgba(255,255,255,.16),transparent 60%);color:var(--ink);font-family:'Archivo','Noto Sans Armenian',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   a{color:inherit;text-decoration:none;} img{display:block;max-width:100%;}
   ::selection{background:var(--red);color:#fff;}
   body::-webkit-scrollbar{width:10px;} body::-webkit-scrollbar-track{background:var(--bg);} body::-webkit-scrollbar-thumb{background:var(--bg-deep);border-radius:99px;}
-  .kicker{font-family:'Fraunces',serif;font-style:italic;font-size:17px;color:#fff;text-shadow:0 1px 8px rgba(43,38,34,.35);}
-  h1,h2{font-family:'Fraunces',serif;font-weight:600;line-height:1.05;letter-spacing:-.01em;color:var(--ink);}
+  .kicker{font-family:'Fraunces','Noto Serif Armenian',serif;font-style:italic;font-size:17px;color:#fff;text-shadow:0 1px 8px rgba(43,38,34,.35);}
+  h1,h2{font-family:'Fraunces','Noto Serif Armenian',serif;font-weight:600;line-height:1.08;letter-spacing:-.01em;color:var(--ink);}
   em{font-style:italic;color:var(--red);}
 
-  /* ---------- ЛОГОТИП: точный кроп (окно сдвинуто ниже, без MAIN MENU) ---------- */
+  /* ---------- ЛОГО ---------- */
   .logo-sprite{width:206px;height:98px;background:url('page-01.jpg') no-repeat;background-size:1000px auto;background-position:-416px -1235px;}
   .logo-sprite--sm{width:128px;height:61px;background-size:620px auto;background-position:-258px -766px;}
   .logo-card{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--paper);padding:8px 16px 6px;border-radius:12px;box-shadow:0 6px 18px rgba(43,38,34,.18);}
@@ -35,27 +35,32 @@
   #loader .logo-sprite{animation:pulse 1.6s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
 
-  /* ---------- NAV (читаемо поверх видео и на бумаге) ---------- */
+  /* ---------- NAV + ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ ---------- */
   .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 6vw;transition:.4s;}
   .nav.scrolled{background:rgba(241,239,233,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);}
-  .nav-right{display:flex;align-items:center;gap:22px;}
+  .nav-right{display:flex;align-items:center;gap:18px;}
   .nav-link{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,239,233,.92);text-shadow:0 1px 6px rgba(43,38,34,.55);transition:.3s;}
   .nav-link:hover{color:#fff;}
   .nav.scrolled .nav-link{color:var(--muted);text-shadow:none;}
   .nav.scrolled .nav-link:hover{color:var(--ink);}
+  .langs{display:flex;gap:6px;}
+  .lang-btn{font:inherit;font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 12px;border:1.5px solid rgba(241,239,233,.75);border-radius:999px;background:none;color:var(--paper);cursor:pointer;transition:.25s;text-shadow:0 1px 6px rgba(43,38,34,.55);}
+  .lang-btn.active{background:var(--paper);color:var(--ink);text-shadow:none;}
+  .nav.scrolled .lang-btn{border-color:var(--line);color:var(--muted);text-shadow:none;}
+  .nav.scrolled .lang-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
   .nav-tel{font-size:13px;font-weight:600;letter-spacing:.06em;padding:10px 20px;border:1.5px solid rgba(241,239,233,.85);border-radius:999px;color:var(--paper);text-shadow:0 1px 6px rgba(43,38,34,.55);transition:.3s;white-space:nowrap;}
   .nav-tel:hover{background:var(--paper);color:var(--ink);text-shadow:none;}
   .nav.scrolled .nav-tel{border-color:var(--ink);color:var(--ink);text-shadow:none;}
   .nav.scrolled .nav-tel:hover{background:var(--ink);color:var(--paper);}
 
-  /* ---------- ACT 1 — VIDEO ---------- */
+  /* ---------- HERO ---------- */
   .hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:url('page-01.jpg') center/cover no-repeat;}
   .hero-media{position:absolute;inset:0;}
   .hero-media video{width:100%;height:100%;object-fit:cover;animation:kb 26s ease-in-out infinite alternate;}
   @keyframes kb{from{transform:scale(1);}to{transform:scale(1.09);}}
   .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 45%,rgba(43,38,34,.16),rgba(43,38,34,.6) 100%);}
   .hero-in{position:relative;z-index:2;padding:0 6vw;max-width:980px;color:var(--paper);}
-  .hero h1{font-size:clamp(38px,6.8vw,84px);color:var(--paper);text-shadow:0 2px 24px rgba(43,38,34,.45);}
+  .hero h1{font-size:clamp(36px,6.6vw,82px);color:var(--paper);text-shadow:0 2px 24px rgba(43,38,34,.45);}
   .hero h1 em{color:#e9d7b4;}
   .line{display:block;overflow:hidden;}
   .line-in{display:block;transform:translateY(110%);transition:transform 1.1s cubic-bezier(.22,1,.36,1);}
@@ -72,22 +77,21 @@
   .scroll-cue i{width:1px;height:40px;background:var(--paper);animation:cue 2s ease-in-out infinite;}
   @keyframes cue{0%,100%{transform:scaleY(.35);opacity:.5;}50%{transform:scaleY(1);opacity:1;}}
 
-  /* ---------- ЛЕНТА ---------- */
+  /* ---------- ЛЕНТА (бренд-слоган, без перевода) ---------- */
   .marquee{border-block:1px solid var(--line);background:var(--paper);overflow:hidden;padding:14px 0;}
   .mq-track{display:flex;width:max-content;animation:mq 34s linear infinite;}
   .mq-track span{font-family:'Fraunces',serif;font-style:italic;font-size:16px;letter-spacing:.14em;color:var(--muted);white-space:nowrap;padding:0 24px;}
   .mq-track b{color:var(--red);font-weight:500;}
   @keyframes mq{to{transform:translateX(-50%);}}
 
-  /* ---------- ACT 2 — КНИГА НА ВСЁ МЕСТО, БЕЗ БЕЛЫХ ПОЛЕЙ ---------- */
+  /* ---------- КНИГА ---------- */
   .menu-sec{padding:clamp(70px,9vw,120px) 0;text-align:center;}
   .menu-sec .kicker{color:var(--ink);text-shadow:none;opacity:.75;font-size:15px;}
-  .menu-sec h2{font-size:clamp(34px,5.4vw,62px);margin:14px 0 12px;}
-  .menu-sub{color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7;}
+  .menu-sec h2{font-size:clamp(32px,5.2vw,60px);margin:14px 0 12px;}
+  .menu-sub{color:var(--muted);max-width:560px;margin:0 auto;line-height:1.7;}
   .book-stage{perspective:1400px;margin:clamp(36px,5vw,56px) auto 0;}
   .book-frame{position:relative;width:min(97vw,1400px);aspect-ratio:4/3;margin:0 auto;opacity:0;transform:translateY(70px) rotateX(10deg);transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.22,1,.36,1);}
   .book-frame.in{opacity:1;transform:translateY(0) rotateX(0);}
-  /* тень без белой подложки — никаких пустых полей */
   .book-frame::before{content:"";position:absolute;inset:0;background:transparent;box-shadow:0 40px 90px rgba(43,38,34,.4);border-radius:4px;}
   #book{position:relative;z-index:1;width:100% !important;height:100% !important;touch-action:pan-y;cursor:pointer;}
   #book img{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;pointer-events:none;}
@@ -100,13 +104,13 @@
   .page-counter{font-family:'Fraunces',serif;font-style:italic;min-width:90px;text-align:center;color:var(--ink);}
   .book-tip{margin-top:16px;font-size:13px;color:var(--muted);}
   .jump-row{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:26px;}
-  .jump{font:inherit;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);background:none;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.3s;}
+  .jump{font:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:none;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.3s;}
   .jump:hover{color:var(--paper);background:var(--ink);border-color:var(--ink);}
 
-  /* ---------- ACT 3 — СВЯЗЬ ---------- */
+  /* ---------- КОНТАКТЫ ---------- */
   .contact-sec{padding:clamp(80px,11vw,140px) 0;text-align:center;background:var(--paper);border-top:1px solid var(--line);}
   .contact-sec .kicker{color:var(--red);text-shadow:none;font-size:15px;}
-  .contact-sec h2{font-size:clamp(34px,5.4vw,62px);margin:14px 0 12px;}
+  .contact-sec h2{font-size:clamp(32px,5.2vw,60px);margin:14px 0 12px;}
   .contact-sub{color:var(--muted);max-width:460px;margin:0 auto;line-height:1.7;}
   .phones{margin:clamp(36px,5vw,56px) 0 10px;display:flex;flex-direction:column;gap:10px;align-items:center;}
   .phone{font-family:'Fraunces',serif;font-size:clamp(30px,5.6vw,58px);line-height:1.15;color:var(--ink);transition:.3s;}
@@ -142,8 +146,12 @@
     <span class="slogan">Time to enjoy</span>
   </a>
   <div class="nav-right">
-    <a class="nav-link" href="#menu">Меню</a>
-    <a class="nav-link" href="#contact">Контакты</a>
+    <a class="nav-link" href="#menu" data-i18n="nav_menu">Մենյու</a>
+    <a class="nav-link" href="#contact" data-i18n="nav_contact">Կապ</a>
+    <div class="langs">
+      <button class="lang-btn active" data-lang="hy">HY</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
     <a class="nav-tel" href="tel:+37400000000">+374 00 000 000</a>
   </div>
 </nav>
@@ -156,16 +164,16 @@
   </div>
   <div class="hero-in">
     <h1>
-      <span class="line"><span class="line-in">Итальянская кухня</span></span>
-      <span class="line"><span class="line-in">в центре <em>Еревана</em></span></span>
+      <span class="line"><span class="line-in" data-i18n-html="hero_l1">Իտալական խոհանոց</span></span>
+      <span class="line"><span class="line-in" data-i18n-html="hero_l2">Երևանի <em>կենտրոնում</em></span></span>
     </h1>
-    <p class="hero-sub">Открыта с 09:00 до 24:00</p>
+    <p class="hero-sub" data-i18n="hero_sub">Բաց է 09:00–24:00</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#menu">Открыть меню →</a>
-      <a class="btn btn-ghost" href="#contact">Забронировать стол</a>
+      <a class="btn btn-primary" href="#menu" data-i18n="hero_b1">Բացել մենյուն →</a>
+      <a class="btn btn-ghost" href="#contact" data-i18n="hero_b2">Ամրագրել սեղան</a>
     </div>
   </div>
-  <div class="scroll-cue"><i></i>листайте</div>
+  <div class="scroll-cue"><i></i><span data-i18n="cue">թերթեք</span></div>
 </header>
 
 <div class="marquee"><div class="mq-track">
@@ -178,9 +186,9 @@
 </div></div>
 
 <section class="menu-sec" id="menu">
-  <span class="kicker rv">меню · 52 страницы</span>
-  <h2 class="rv">Листайте, как <em>в ресторане</em></h2>
-  <p class="menu-sub rv">Клик по странице, свайп или стрелки ← → — книга отвечает как бумажная.</p>
+  <span class="kicker rv" data-i18n="m_kick">մենյու · 52 էջ</span>
+  <h2 class="rv" data-i18n-html="m_h2">Թերթեք, ինչպես <em>ռեստորանում</em></h2>
+  <p class="menu-sub rv" data-i18n="m_sub">Սեղմեք էջին, սվայփ կամ սլաքներ ← → — գիրքը պատասխանում է ինչպես թղթե։</p>
 
   <div class="book-stage">
     <div class="book-frame" id="bookFrame">
@@ -189,31 +197,31 @@
   </div>
 
   <div class="book-controls">
-    <button class="flip-btn" id="prevBtn" aria-label="Предыдущая страница"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+    <button class="flip-btn" id="prevBtn" aria-label="Նախորդ էջ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
     <div class="page-counter"><span id="pageNow">1</span> / <span id="pageTotal">52</span></div>
-    <button class="flip-btn" id="nextBtn" aria-label="Следующая страница"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+    <button class="flip-btn" id="nextBtn" aria-label="Հաջորդ էջ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
   </div>
-  <p class="book-tip">На телефоне книга закрыта — нажмите на обложку, чтобы открыть</p>
+  <p class="book-tip" data-i18n="m_tip">Հեռախոսում գիրքը փակ է — սեղմեք շապիկին՝ բացելու համար</p>
 
   <div class="jump-row rv">
-    <button class="jump" data-page="4">Закуски</button>
-    <button class="jump" data-page="18">Паста</button>
-    <button class="jump" data-page="22">Пицца</button>
-    <button class="jump" data-page="36">Вино</button>
-    <button class="jump" data-page="44">Десерты</button>
+    <button class="jump" data-page="4" data-i18n="j1">Նախուտեստներ</button>
+    <button class="jump" data-page="18" data-i18n="j2">Պաստա</button>
+    <button class="jump" data-page="22" data-i18n="j3">Պիցցա</button>
+    <button class="jump" data-page="36" data-i18n="j4">Գինի</button>
+    <button class="jump" data-page="44" data-i18n="j5">Աղանդեր</button>
   </div>
 </section>
 
 <section class="contact-sec" id="contact">
-  <span class="kicker rv">бронь стола</span>
-  <h2 class="rv">Позвоните — и <em>столик ждёт</em></h2>
-  <p class="contact-sub rv">Одно касание — и мы позаботимся обо всём остальном.</p>
+  <span class="kicker rv" data-i18n="c_kick">սեղանի ամրագրում</span>
+  <h2 class="rv" data-i18n-html="c_h2">Զանգեք — և սեղանը <em>սպասում է</em></h2>
+  <p class="contact-sub rv" data-i18n="c_sub">Մեկ հպում — և մնացածը մենք կհոգանք։</p>
   <div class="phones rv">
     <a class="phone" href="tel:+37400000000">+374 00 000 000</a>
     <a class="phone" href="tel:+37400000001">+374 00 000 001</a>
   </div>
-  <a class="wa-btn rv" href="https://wa.me/37400000000" target="_blank" rel="noopener">Написать в WhatsApp</a>
-  <p class="addr rv">Ереван, улица Абабяна 12<br>Ежедневно 09:00 – 24:00</p>
+  <a class="wa-btn rv" href="https://wa.me/37400000000" target="_blank" rel="noopener" data-i18n="c_wa">Գրել WhatsApp-ով</a>
+  <p class="addr rv"><span data-i18n="c_addr1">Երևան, Աբաբյան 12</span><br><span data-i18n="c_addr2">Ամեն օր 09:00 – 24:00</span></p>
 </section>
 
 <footer>
@@ -222,13 +230,57 @@
     <span class="slogan">Time to enjoy</span>
   </div>
   <div class="foot-line">
-    <span>© 2026 In Tempo · Italian kitchen</span>
+    <span data-i18n="f_line">© 2026 In Tempo · Իտալական խոհանոց</span>
     <span><a href="#">Instagram</a> · <a href="#">Telegram</a></span>
   </div>
 </footer>
 
 <script src="page-flip.browser.js"></script>
 <script>
+  /* ---------- ЯЗЫКИ: HY (основной) / EN ---------- */
+  const DICT = {
+    hy:{title:'In Tempo — Իտալական խոհանոց · Երևան',nav_menu:'Մենյու',nav_contact:'Կապ',
+      hero_l1:'Իտալական խոհանոց',hero_l2:'Երևանի <em>կենտրոնում</em>',hero_sub:'Բաց է 09:00–24:00',
+      hero_b1:'Բացել մենյուն →',hero_b2:'Ամրագրել սեղան',cue:'թերթեք',
+      m_kick:'մենյու · 52 էջ',m_h2:'Թերթեք, ինչպես <em>ռեստորանում</em>',
+      m_sub:'Սեղմեք էջին, սվայփ կամ սլաքներ ← → — գիրքը պատասխանում է ինչպես թղթե։',
+      m_tip:'Հեռախոսում գիրքը փակ է — սեղմեք շապիկին՝ բացելու համար',
+      j1:'Նախուտեստներ',j2:'Պաստա',j3:'Պիցցա',j4:'Գինի',j5:'Աղանդեր',
+      c_kick:'սեղանի ամրագրում',c_h2:'Զանգեք — և սեղանը <em>սպասում է</em>',
+      c_sub:'Մեկ հպում — և մնացածը մենք կհոգանք։',c_wa:'Գրել WhatsApp-ով',
+      c_addr1:'Երևան, Աբաբյան 12',c_addr2:'Ամեն օր 09:00 – 24:00',
+      f_line:'© 2026 In Tempo · Իտալական խոհանոց'},
+    en:{title:'In Tempo — Italian Kitchen · Yerevan',nav_menu:'Menu',nav_contact:'Contact',
+      hero_l1:'Italian kitchen',hero_l2:'in the heart of <em>Yerevan</em>',hero_sub:'Open 09:00 – 24:00',
+      hero_b1:'Open the menu →',hero_b2:'Book a table',cue:'scroll',
+      m_kick:'menu · 52 pages',m_h2:'Flip it like <em>at the restaurant</em>',
+      m_sub:'Click a page, swipe or use ← → arrows — the book responds like paper.',
+      m_tip:'On phone the book is closed — tap the cover to open',
+      j1:'Starters',j2:'Pasta',j3:'Pizza',j4:'Wine',j5:'Desserts',
+      c_kick:'table reservation',c_h2:'Call us — and the table <em>is waiting</em>',
+      c_sub:'One tap — and we will take care of the rest.',c_wa:'Message on WhatsApp',
+      c_addr1:'Yerevan, Ababyan 12',c_addr2:'Daily 09:00 – 24:00',
+      f_line:'© 2026 In Tempo · Italian kitchen'}
+  };
+  function applyLang(lang){
+    const d = DICT[lang] || DICT.hy;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const k = el.getAttribute('data-i18n'); if (d[k] !== undefined) el.textContent = d[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const k = el.getAttribute('data-i18n-html'); if (d[k] !== undefined) el.innerHTML = d[k];
+    });
+    document.documentElement.lang = lang;
+    document.title = d.title;
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+    try{ localStorage.setItem('intempo_lang', lang); }catch(e){}
+  }
+  document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click', ()=>applyLang(b.dataset.lang)));
+  let savedLang = 'hy';
+  try{ savedLang = localStorage.getItem('intempo_lang') || 'hy'; }catch(e){}
+  applyLang(savedLang);
+
+  /* ---------- ОСТАЛЬНОЕ ---------- */
   window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('done'), 700));
   window.addEventListener('load', () => document.querySelector('.hero').classList.add('ready'));
 
