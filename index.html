@@ -1,4 +1,4 @@
-э<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hy">
 <head>
 <meta charset="UTF-8">
@@ -7,27 +7,29 @@
 <meta name="description" content="In Tempo — իտալական խոհանոց Երևանի կենտրոնում։ Բաց է 09:00–24:00։ Time to enjoy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Archivo:wght@400;500;600&family=Noto+Serif+Armenian:wght@500;600&family=Noto+Sans+Armenian:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#b79d74; --bg-deep:#a68c62; --paper:#f1efe9;
     --ink:#2b2622; --muted:rgba(43,38,34,.66); --line:rgba(43,38,34,.16); --red:#d8432a;
+    --serif:'Noto Serif',Georgia,serif;
+    --sans:'Noto Sans',-apple-system,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);background-image:radial-gradient(ellipse 900px 500px at 15% -10%,rgba(255,255,255,.16),transparent 60%);color:var(--ink);font-family:'Archivo','Noto Sans Armenian',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body{background:var(--bg);background-image:radial-gradient(ellipse 900px 500px at 15% -10%,rgba(255,255,255,.16),transparent 60%);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   a{color:inherit;text-decoration:none;} img{display:block;max-width:100%;}
   ::selection{background:var(--red);color:#fff;}
   body::-webkit-scrollbar{width:10px;} body::-webkit-scrollbar-track{background:var(--bg);} body::-webkit-scrollbar-thumb{background:var(--bg-deep);border-radius:99px;}
-  .kicker{font-family:'Fraunces','Noto Serif Armenian',serif;font-style:italic;font-size:17px;color:#fff;text-shadow:0 1px 8px rgba(43,38,34,.35);}
-  h1,h2{font-family:'Fraunces','Noto Serif Armenian',serif;font-weight:600;line-height:1.08;letter-spacing:-.01em;color:var(--ink);}
+  .kicker{font-family:var(--serif);font-style:italic;font-size:17px;color:#fff;text-shadow:0 1px 8px rgba(43,38,34,.35);}
+  h1,h2{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.01em;color:var(--ink);}
   em{font-style:italic;color:var(--red);}
 
-  /* ---------- ЛОГО ---------- */
-  .logo-sprite{width:206px;height:98px;background:url('page-01.jpg') no-repeat;background-size:1000px auto;background-position:-416px -1235px;}
-  .logo-sprite--sm{width:128px;height:61px;background-size:620px auto;background-position:-258px -766px;}
+  /* ---------- ЛОГО: окно с запасом по белой бумаге — видно целиком ---------- */
+  .logo-sprite{width:240px;height:140px;background:url('page-01.jpg') no-repeat;background-size:1000px auto;background-position:-400px -1215px;}
+  .logo-sprite--sm{width:132px;height:77px;background-size:550px auto;background-position:-220px -668px;}
   .logo-card{display:inline-flex;flex-direction:column;align-items:center;gap:2px;background:var(--paper);padding:8px 16px 6px;border-radius:12px;box-shadow:0 6px 18px rgba(43,38,34,.18);}
-  .slogan{font-family:'Fraunces',serif;font-style:italic;font-size:11px;letter-spacing:.14em;color:var(--muted);}
+  .slogan{font-family:var(--serif);font-style:italic;font-size:11px;letter-spacing:.14em;color:var(--muted);}
 
   /* ---------- LOADER ---------- */
   #loader{position:fixed;inset:0;z-index:100;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .8s ease,visibility .8s;}
@@ -35,16 +37,16 @@
   #loader .logo-sprite{animation:pulse 1.6s ease-in-out infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
 
-  /* ---------- NAV + ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ ---------- */
+  /* ---------- NAV + 3 ЯЗЫКА ---------- */
   .nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:14px 6vw;transition:.4s;}
   .nav.scrolled{background:rgba(241,239,233,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);}
-  .nav-right{display:flex;align-items:center;gap:18px;}
+  .nav-right{display:flex;align-items:center;gap:16px;}
   .nav-link{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,239,233,.92);text-shadow:0 1px 6px rgba(43,38,34,.55);transition:.3s;}
   .nav-link:hover{color:#fff;}
   .nav.scrolled .nav-link{color:var(--muted);text-shadow:none;}
   .nav.scrolled .nav-link:hover{color:var(--ink);}
-  .langs{display:flex;gap:6px;}
-  .lang-btn{font:inherit;font-size:11px;font-weight:600;letter-spacing:.12em;padding:7px 12px;border:1.5px solid rgba(241,239,233,.75);border-radius:999px;background:none;color:var(--paper);cursor:pointer;transition:.25s;text-shadow:0 1px 6px rgba(43,38,34,.55);}
+  .langs{display:flex;gap:5px;}
+  .lang-btn{font:inherit;font-size:11px;font-weight:600;letter-spacing:.1em;padding:7px 11px;border:1.5px solid rgba(241,239,233,.75);border-radius:999px;background:none;color:var(--paper);cursor:pointer;transition:.25s;text-shadow:0 1px 6px rgba(43,38,34,.55);}
   .lang-btn.active{background:var(--paper);color:var(--ink);text-shadow:none;}
   .nav.scrolled .lang-btn{border-color:var(--line);color:var(--muted);text-shadow:none;}
   .nav.scrolled .lang-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
@@ -60,7 +62,7 @@
   @keyframes kb{from{transform:scale(1);}to{transform:scale(1.09);}}
   .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 45%,rgba(43,38,34,.16),rgba(43,38,34,.6) 100%);}
   .hero-in{position:relative;z-index:2;padding:0 6vw;max-width:980px;color:var(--paper);}
-  .hero h1{font-size:clamp(36px,6.6vw,82px);color:var(--paper);text-shadow:0 2px 24px rgba(43,38,34,.45);}
+  .hero h1{font-size:clamp(34px,6.4vw,80px);color:var(--paper);text-shadow:0 2px 24px rgba(43,38,34,.45);}
   .hero h1 em{color:#e9d7b4;}
   .line{display:block;overflow:hidden;}
   .line-in{display:block;transform:translateY(110%);transition:transform 1.1s cubic-bezier(.22,1,.36,1);}
@@ -77,17 +79,17 @@
   .scroll-cue i{width:1px;height:40px;background:var(--paper);animation:cue 2s ease-in-out infinite;}
   @keyframes cue{0%,100%{transform:scaleY(.35);opacity:.5;}50%{transform:scaleY(1);opacity:1;}}
 
-  /* ---------- ЛЕНТА (бренд-слоган, без перевода) ---------- */
+  /* ---------- ЛЕНТА ---------- */
   .marquee{border-block:1px solid var(--line);background:var(--paper);overflow:hidden;padding:14px 0;}
   .mq-track{display:flex;width:max-content;animation:mq 34s linear infinite;}
-  .mq-track span{font-family:'Fraunces',serif;font-style:italic;font-size:16px;letter-spacing:.14em;color:var(--muted);white-space:nowrap;padding:0 24px;}
+  .mq-track span{font-family:var(--serif);font-style:italic;font-size:16px;letter-spacing:.14em;color:var(--muted);white-space:nowrap;padding:0 24px;}
   .mq-track b{color:var(--red);font-weight:500;}
   @keyframes mq{to{transform:translateX(-50%);}}
 
   /* ---------- КНИГА ---------- */
   .menu-sec{padding:clamp(70px,9vw,120px) 0;text-align:center;}
   .menu-sec .kicker{color:var(--ink);text-shadow:none;opacity:.75;font-size:15px;}
-  .menu-sec h2{font-size:clamp(32px,5.2vw,60px);margin:14px 0 12px;}
+  .menu-sec h2{font-size:clamp(30px,5vw,58px);margin:14px 0 12px;}
   .menu-sub{color:var(--muted);max-width:560px;margin:0 auto;line-height:1.7;}
   .book-stage{perspective:1400px;margin:clamp(36px,5vw,56px) auto 0;}
   .book-frame{position:relative;width:min(97vw,1400px);aspect-ratio:4/3;margin:0 auto;opacity:0;transform:translateY(70px) rotateX(10deg);transition:opacity 1.1s cubic-bezier(.22,1,.36,1),transform 1.1s cubic-bezier(.22,1,.36,1);}
@@ -101,7 +103,7 @@
   .flip-btn:hover{background:var(--ink);color:var(--paper);transform:scale(1.06);}
   .flip-btn:disabled{opacity:.3;transform:none;background:transparent;color:var(--ink);}
   .flip-btn svg{width:20px;height:20px;}
-  .page-counter{font-family:'Fraunces',serif;font-style:italic;min-width:90px;text-align:center;color:var(--ink);}
+  .page-counter{font-family:var(--serif);font-style:italic;min-width:90px;text-align:center;color:var(--ink);}
   .book-tip{margin-top:16px;font-size:13px;color:var(--muted);}
   .jump-row{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:26px;}
   .jump{font:inherit;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:none;border:1.5px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.3s;}
@@ -110,10 +112,10 @@
   /* ---------- КОНТАКТЫ ---------- */
   .contact-sec{padding:clamp(80px,11vw,140px) 0;text-align:center;background:var(--paper);border-top:1px solid var(--line);}
   .contact-sec .kicker{color:var(--red);text-shadow:none;font-size:15px;}
-  .contact-sec h2{font-size:clamp(32px,5.2vw,60px);margin:14px 0 12px;}
+  .contact-sec h2{font-size:clamp(30px,5vw,58px);margin:14px 0 12px;}
   .contact-sub{color:var(--muted);max-width:460px;margin:0 auto;line-height:1.7;}
   .phones{margin:clamp(36px,5vw,56px) 0 10px;display:flex;flex-direction:column;gap:10px;align-items:center;}
-  .phone{font-family:'Fraunces',serif;font-size:clamp(30px,5.6vw,58px);line-height:1.15;color:var(--ink);transition:.3s;}
+  .phone{font-family:var(--serif);font-size:clamp(30px,5.6vw,58px);line-height:1.15;color:var(--ink);transition:.3s;}
   .phone:hover{color:var(--red);}
   .wa-btn{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:16px 34px;border-radius:999px;background:var(--ink);color:var(--paper);font-weight:600;font-size:15px;transition:.25s;}
   .wa-btn:hover{transform:translateY(-2px);background:var(--red);box-shadow:0 14px 30px rgba(216,67,42,.3);}
@@ -128,7 +130,7 @@
   @media (max-width:768px){
     .book-frame{width:min(94vw,640px);aspect-ratio:2/3;}
     .nav-link{display:none;}
-    .logo-sprite--sm{width:103px;height:49px;background-size:500px auto;background-position:-208px -618px;}
+    .logo-sprite--sm{width:108px;height:63px;background-size:450px auto;background-position:-180px -547px;}
   }
   @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms !important;animation-duration:.01ms !important;}}
 </style>
@@ -151,6 +153,7 @@
     <div class="langs">
       <button class="lang-btn active" data-lang="hy">HY</button>
       <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ru">RU</button>
     </div>
     <a class="nav-tel" href="tel:+37400000000">+374 00 000 000</a>
   </div>
@@ -237,7 +240,7 @@
 
 <script src="page-flip.browser.js"></script>
 <script>
-  /* ---------- ЯЗЫКИ: HY (основной) / EN ---------- */
+  /* ---------- 3 ЯЗЫКА: HY (основной) / EN / RU ---------- */
   const DICT = {
     hy:{title:'In Tempo — Իտալական խոհանոց · Երևան',nav_menu:'Մենյու',nav_contact:'Կապ',
       hero_l1:'Իտալական խոհանոց',hero_l2:'Երևանի <em>կենտրոնում</em>',hero_sub:'Բաց է 09:00–24:00',
@@ -260,7 +263,18 @@
       c_kick:'table reservation',c_h2:'Call us — and the table <em>is waiting</em>',
       c_sub:'One tap — and we will take care of the rest.',c_wa:'Message on WhatsApp',
       c_addr1:'Yerevan, Ababyan 12',c_addr2:'Daily 09:00 – 24:00',
-      f_line:'© 2026 In Tempo · Italian kitchen'}
+      f_line:'© 2026 In Tempo · Italian kitchen'},
+    ru:{title:'In Tempo — Итальянская кухня · Ереван',nav_menu:'Меню',nav_contact:'Контакты',
+      hero_l1:'Итальянская кухня',hero_l2:'в центре <em>Еревана</em>',hero_sub:'Открыта с 09:00 до 24:00',
+      hero_b1:'Открыть меню →',hero_b2:'Забронировать стол',cue:'листайте',
+      m_kick:'меню · 52 страницы',m_h2:'Листайте, как <em>в ресторане</em>',
+      m_sub:'Клик по странице, свайп или стрелки ← → — книга отвечает как бумажная.',
+      m_tip:'На телефоне книга закрыта — нажмите на обложку, чтобы открыть',
+      j1:'Закуски',j2:'Паста',j3:'Пицца',j4:'Вино',j5:'Десерты',
+      c_kick:'бронь стола',c_h2:'Позвоните — и столик <em>ждёт</em>',
+      c_sub:'Одно касание — и мы позаботимся обо всём остальном.',c_wa:'Написать в WhatsApp',
+      c_addr1:'Ереван, улица Абабяна 12',c_addr2:'Ежедневно 09:00 – 24:00',
+      f_line:'© 2026 In Tempo · Итальянская кухня'}
   };
   function applyLang(lang){
     const d = DICT[lang] || DICT.hy;
